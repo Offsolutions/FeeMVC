@@ -1,0 +1,202 @@
+﻿@model MvcFeeManage.Areas.Auth.Models.tblstudentdata
+
+@{
+    ViewBag.Title = "Details";
+    Layout = "~/Areas/Auth/Views/Shared/Layout.cshtml";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>Student Registration</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            Roll No.
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.rollno)
+        </dd>
+
+        <dt>
+            Name
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.name)
+        </dd>
+
+        <dt>
+            DOB
+        </dt>
+
+        <dt>
+            Gender
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.gender)
+        </dd>
+
+        <dt>
+            Email
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.email)
+        </dd>
+
+        <dd>
+            @Html.DisplayFor(model => model.dob)
+        </dd>
+
+        <dt>
+            Father Name
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.fathername)
+        </dd>
+
+        <dt>
+            Address
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.address)
+        </dd>
+
+        <dt>
+            Phone
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.phone)
+        </dd>
+
+        <dt>
+            Father's Contact
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.fatherphn)
+        </dd>
+
+        <dt>
+            Language
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.language)
+        </dd>
+
+        <dt>
+            Board
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.board)
+        </dd>
+
+        <dt>
+            Qualification
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.qualification)
+        </dd>
+
+        <dt>
+            Prior Coaching
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.coaching)
+        </dd>
+
+        <dt>
+            Institute name
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.institutename)
+        </dd>
+
+        <dt>
+            Type
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.type)
+        </dd>
+
+        <dt>
+            Reffered By
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.refferedby)
+        </dd>
+
+        <dt>
+            Student Image
+        </dt>
+
+        <dd>
+            <img src="~/UploadedFiles/model.image" width="70" />
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Status)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Status)
+        </dd>
+
+        <dt>
+            User Name
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.username)
+        </dd>
+
+        <dt>
+            Password
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.password)
+        </dd>
+
+        <dt>
+            Remarks
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.remarks)
+        </dd>
+
+        @*<dt>
+                @Html.DisplayNameFor(model => model.discount)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.discount)
+            </dd>
+
+            <dt>
+                @Html.DisplayNameFor(model => model.date)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.date)
+            </dd>*@
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.Id }) |
+    @Html.ActionLink("Back to List", "Index", null, new { @class = "btn btn-danger" })
+</p>
