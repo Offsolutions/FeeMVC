@@ -21,7 +21,7 @@ namespace MvcFeeManage.Areas.Auth.Controllers
             rollno = roll;
             var course = db.Courses.ToList();
             var room = db.tblrooms.ToList();
-            return View(db.StudentCourse.Where(x => x.RollNo == roll).ToList());
+            return View(db.StudentCourses.Where(x => x.RollNo == roll).ToList());
         }
 
         // GET: Auth/AssignCourse/Details/5
@@ -31,7 +31,7 @@ namespace MvcFeeManage.Areas.Auth.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            StudentCourse student_Course = db.StudentCourse.Find(id);
+            StudentCourse student_Course = db.StudentCourses.Find(id);
             if (student_Course == null)
             {
                 return HttpNotFound();
@@ -59,7 +59,7 @@ namespace MvcFeeManage.Areas.Auth.Controllers
             {
                 student_Course.Uid = Session["User"].ToString();
                 student_Course.RollNo = rollno;
-                db.StudentCourse.Add(student_Course);
+                db.StudentCourses.Add(student_Course);
                 db.SaveChanges();  
 
                 Fees_Master feemaster = db.Fees_Master.FirstOrDefault(x => x.RollNo == student_Course.RollNo);
@@ -84,7 +84,7 @@ namespace MvcFeeManage.Areas.Auth.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            StudentCourse student_Course = db.StudentCourse.Find(id);
+            StudentCourse student_Course = db.StudentCourses.Find(id);
             rollno = student_Course.RollNo;
             ViewBag.CourseId = new SelectList(db.Courses, "CourseId", "CourseName");
             ViewBag.RoomId = new SelectList(db.tblrooms, "RoomId", "room");
@@ -100,17 +100,17 @@ namespace MvcFeeManage.Areas.Auth.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "Id,RollNo,CourseId,Admitdate,enddate,Fees,Uid,RoomId,Status")] StudentCourse student_Course)
+        public ActionResult Edit([Bind(Include = "Id,CourseId,Admitdate,enddate,Fees,RoomId,Status")] StudentCourse student_Course)
         {
             if (ModelState.IsValid)
             {
                 student_Course.RollNo = rollno;
-                student_Course.Uid = Session["User"].ToString();
+
                 db.Entry(student_Course).State = EntityState.Modified;
                 db.SaveChanges();
 
-                Fees_Master feemaster = db.Fees_Master.FirstOrDefault(x => x.RollNo == student_Course.RollNo);
-                feemaster.RollNo = student_Course.RollNo;
+                Fees_Master feemaster = db.Fees_Master.FirstOrDefault(x => x.RollNo == rollno);
+                //feemaster.RollNo = student_Course.RollNo;
                 feemaster.Date = System.DateTime.Now;
                 //feemaster.CourseId = student_Course.CourseId;
                 feemaster.AlertDate = System.DateTime.Now.AddDays(2);
@@ -130,7 +130,7 @@ namespace MvcFeeManage.Areas.Auth.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            StudentCourse student_Course = db.StudentCourse.Find(id);
+            StudentCourse student_Course = db.StudentCourses.Find(id);
             rollno = student_Course.RollNo;
             if (student_Course == null)
             {
@@ -144,9 +144,9 @@ namespace MvcFeeManage.Areas.Auth.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(int id)
         {
-            StudentCourse student_Course = db.StudentCourse.Find(id);
+            StudentCourse student_Course = db.StudentCourses.Find(id);
             rollno = student_Course.RollNo;
-            db.StudentCourse.Remove(student_Course);
+            db.StudentCourses.Remove(student_Course);
             db.SaveChanges();
 
             Fees_Master feemaster = db.Fees_Master.FirstOrDefault(x => x.RollNo == student_Course.RollNo);

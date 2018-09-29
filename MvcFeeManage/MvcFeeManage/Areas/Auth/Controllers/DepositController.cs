@@ -31,7 +31,7 @@ namespace MvcFeeManage.Areas.Auth.Controllers
         public ActionResult Create(int roll)
         {
             rollno = roll;
-            StudentCourse course = db.StudentCourse.Where(x => x.RollNo == roll && x.Status == true).FirstOrDefault();
+            StudentCourse course = db.StudentCourses.Where(x => x.RollNo == roll && x.Status == true).FirstOrDefault();
             var courses = db.Courses.Where(x => x.CourseId == course.CourseId);
      
             ViewBag.CourseId = new SelectList(courses, "CourseId", "CourseName");

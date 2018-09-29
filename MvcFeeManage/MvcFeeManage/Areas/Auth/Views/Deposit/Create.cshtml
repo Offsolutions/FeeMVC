@@ -9,7 +9,7 @@
                 //var cour = db.Student_Course.Where(x => x.RollNo == rolno).Where(x => x.Status == true).GroupJoin(db.Courses, c => c.CourseId, x => x.CourseId,
                 //(c, x) => c).ToList();
 
-                List<Student_Course> stucor = db.Student_Course.Where(x => x.RollNo == rolno).Where(x => x.Status == true).ToList();
+                List<StudentCourse> stucor = db.StudentCourses.Where(x => x.RollNo == rolno).Where(x => x.Status == true).ToList();
 
                 List<tblstudentdata> stu = db.tblstudentdata.Where(x => x.rollno == rolno).ToList();
                 var name = stu.FirstOrDefault().name;
@@ -146,7 +146,7 @@
 
             //alert('pressed')
             var a = $("#Pending").val();
-            //debugger;
+            debugger;
             var totalcost = $("#Pending").val() - $(this).val()
             $("#Balance").val(totalcost);
             $("#hidebal").val(totalcost);
@@ -158,7 +158,7 @@
 
             //alert('pressed')
             var a = $("#Pending").val();
-            //debugger;
+            debugger;
             var totalcost2 = $("#hidebal").val() - $(this).val()
             $("#Balance").val(totalcost2);
         })

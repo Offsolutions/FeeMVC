@@ -15,6 +15,7 @@
     <meta name="author" content="">
     <link rel="shortcut icon" href="assets/img/logo-fav.png">
     <title>@ViewBag.Title</title>
+
     <link rel="stylesheet" type="text/css" href="~/Areas/assets/lib/perfect-scrollbar/css/perfect-scrollbar.min.css" />
     <link rel="stylesheet" type="text/css" href="~/Areas/assets/lib/material-design-icons/css/material-design-iconic-font.min.css" />
     <link rel="stylesheet" type="text/css" href="~/Areas/assets/lib/datatables/css/dataTables.bootstrap.min.css" />
@@ -35,7 +36,7 @@
                     <a href="index.html" class="navbar-brand"></a>
                 </div>
                 <div class="be-right-navbar">
-                    <ul class="nav navbar-nav navbar-right be-user-nav">
+                    @*<ul class="nav navbar-nav navbar-right be-user-nav">
                         <li class="dropdown">
                             <a href="#" data-toggle="dropdown" role="button" aria-expanded="false" class="dropdown-toggle"><img src="assets/img/avatar.png" alt="Avatar"><span class="user-name">English Punjab</span></a>
                             <ul role="menu" class="dropdown-menu">
@@ -48,11 +49,11 @@
                                 
                             </ul>
                         </li>
-                    </ul>
+                    </ul>*@
                     <div class="page-title"><span> <i class="fa fa-phone" aria-hidden="true"></i>Fee Management<a href="tel:9780551900"></a> </span></div>
                     <ul class="nav navbar-nav navbar-right be-icons-nav">
-                        <li class="dropdown"><a href="#" role="button" aria-expanded="false" class="be-toggle-right-sidebar"><span class="icon mdi mdi-settings"></span></a></li>
-                        <li class="dropdown">
+                        @*<li class="dropdown"><a href="#" role="button" aria-expanded="false" class="be-toggle-right-sidebar"><span class="icon mdi mdi-settings"></span></a></li>*@
+                        @*<li class="dropdown">
                             <a href="#" data-toggle="dropdown" role="button" aria-expanded="false" class="dropdown-toggle"><span class="icon mdi mdi-notifications"></span><span class="indicator"></span></a>
                             <ul class="dropdown-menu be-notifications">
                                 <li>
@@ -98,7 +99,7 @@
                                     <div class="footer"> <a href="#">View all notifications</a></div>
                                 </li>
                             </ul>
-                        </li>
+                        </li>*@
                         <li class="dropdown">
                             <a href="#" data-toggle="dropdown" role="button" aria-expanded="false" class="dropdown-toggle"><span class="icon mdi mdi-apps"></span></a>
                             <ul class="dropdown-menu be-connections">
@@ -110,6 +111,11 @@
 
                                     }</div>
                                 </li>
+                                @*<ul class="dropdown-menu dropdown-usermenu animated fadeInDown pull-right">*@
+                                    <li>
+                                        <a href="@Url.Action("SignOut","Account")"><i class="fa fa-sign-out pull-right"></i> Logout</a>
+                                    </li>
+                                @*</ul>*@
                             </ul>
                         </li>
                     </ul>

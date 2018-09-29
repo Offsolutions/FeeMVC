@@ -94,7 +94,7 @@ namespace MvcFeeManage.Areas.Auth.Controllers
                 studentcourse.Fees = addmission;
                 studentcourse.Uid = Session["User"].ToString();
                 studentcourse.Status = true;
-                db.StudentCourse.Add(studentcourse);
+                db.StudentCourses.Add(studentcourse);
                 db.SaveChanges();
 
                 return RedirectToAction("Index");

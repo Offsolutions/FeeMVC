@@ -52,19 +52,19 @@ namespace MvcFeeManage.Areas.Auth.Controllers
         {
             if (ModelState.IsValid)
             {
-                //tblreceptionist recp = db.tblreceptionists.FirstOrDefault();
-                //if (recp == null)
-                //{
-                //    tblreceptionist.rid = "r_1001";
-                //}
-                //else
-                //{
-                //    var valc = db.tblreceptionists.Max(x => x.rid);
+                tblreceptionist recp = db.tblreceptionists.FirstOrDefault();
+                if (recp == null)
+                {
+                    tblreceptionist.rid = "r_1001";
+                }
+                else
+                {
+                    var valc = db.tblreceptionists.Max(x => x.rid);
 
-                //    string[] rec = valc.Split('_');
-                //    var ab = rec[1].ToString();
-                //    tblreceptionist.rid = (Convert.ToInt32(ab) + 1).ToString();
-                //}
+                    string[] rec = valc.Split('_');
+                    var ab = rec[1].ToString();
+                    tblreceptionist.rid = (Convert.ToInt32(ab) + 1).ToString();
+                }
                 tblreceptionist.image = Help.uploadfile(file);
                 db.tblreceptionists.Add(tblreceptionist);
                 db.SaveChanges();
@@ -182,6 +182,7 @@ namespace MvcFeeManage.Areas.Auth.Controllers
             if (dataItem != null)
             {
                 FormsAuthentication.SetAuthCookie(dataItem.login, false);
+             
                 if (Url.IsLocalUrl(returnUrl) && returnUrl.Length > 1 && returnUrl.StartsWith("/")
                          && !returnUrl.StartsWith("//") && !returnUrl.StartsWith("/\\"))
                 {

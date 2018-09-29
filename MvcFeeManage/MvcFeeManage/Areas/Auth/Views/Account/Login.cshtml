@@ -25,9 +25,9 @@
                     <div class="panel panel-default panel-border-color panel-border-color-primary">
                         <div class="panel-heading"><h2>Sign In</h2><span class="splash-description">Please enter your user information.</span></div>
                         <div class="panel-body">
-                           @using (Html.BeginForm("Login", "Account", new { returnUrl = Request.QueryString["ReturnUrl"] }, FormMethod.Post))
-                           {
-                                @Html.AntiForgeryToken()
+                        @using (Html.BeginForm("Login", "Account", new { returnUrl = Request.QueryString["ReturnUrl"] }, FormMethod.Post))
+                        {
+                           @Html.AntiForgeryToken()
                                 <div class="form-group">
                                     <label>Username</label>
                                     @Html.EditorFor(model => model.login, new { htmlAttributes = new { @class = "form-control", @placeholder = "User Name" } })

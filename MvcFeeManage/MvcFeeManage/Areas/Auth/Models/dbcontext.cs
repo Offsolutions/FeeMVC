@@ -26,7 +26,7 @@ namespace MvcFeeManage.Areas.Auth.Models
         public System.Data.Entity.DbSet<MvcFeeManage.Areas.Auth.Models.Fees_Master> Fees_Master { get; set; }
 
         public System.Data.Entity.DbSet<MvcFeeManage.Areas.Auth.Models.tblReceipt> tblReceipt { get; set; }
-        public System.Data.Entity.DbSet<MvcFeeManage.Areas.Auth.Models.StudentCourse> StudentCourse { get; set; }
+        public System.Data.Entity.DbSet<MvcFeeManage.Areas.Auth.Models.StudentCourse> StudentCourses { get; set; }
 
         public System.Data.Entity.DbSet<MvcFeeManage.Areas.Auth.Models.Recipt_Details> Recipt_Details { get; set; }
 
