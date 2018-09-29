@@ -1,8 +1,9 @@
 ﻿@model IEnumerable<MvcFeeManage.Areas.Auth.Models.StudentCourse>
-
+@using MvcFeeManage.Areas.Auth.Models
 @{
     ViewBag.Title = "Index";
     Layout = "~/Areas/Auth/Views/Shared/Layout.cshtml";
+    dbcontext db = new dbcontext();
 }
 
 <h2><b>Index</b></h2>
@@ -16,7 +17,7 @@
             @Html.DisplayNameFor(model => model.RollNo)
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.CourseId)
+          Course
         </th>
         <th>
             @Html.DisplayNameFor(model => model.Admitdate)
@@ -27,12 +28,12 @@
         <th>
             @Html.DisplayNameFor(model => model.Fees)
         </th>
-        <th>
+        @*<th>
             @Html.DisplayNameFor(model => model.Uid)
-        </th>
-        <th>
+        </th>*@
+        @*<th>
             @Html.DisplayNameFor(model => model.RoomId)
-        </th>
+        </th>*@
         <th>
             @Html.DisplayNameFor(model => model.Status)
         </th>
@@ -45,23 +46,24 @@
             @Html.DisplayFor(modelItem => item.RollNo)
         </td>
         <td>
-            @Html.DisplayFor(modelItem => item.CourseId)
+            @{var coursename = db.Courses.Where(x => x.CourseId == item.CourseId).ToList();}
+            @coursename[0].CourseName
         </td>
         <td>
-            @Convert.ToDateTime(@item.Admitdate).ToString("dd - MM - yyyy")
+            @Convert.ToDateTime(@item.Admitdate).ToString("dd-MM-yyyy")
         </td>
         <td>
-            @Convert.ToDateTime(@item.enddate).ToString("dd - MM - yyyy")
+            @Convert.ToDateTime(@item.enddate).ToString("dd-MM-yyyy")
         </td>
         <td>
             @Html.DisplayFor(modelItem => item.Fees)
         </td>
-        <td>
+        @*<td>
             @Html.DisplayFor(modelItem => item.Uid)
-        </td>
-        <td>
+        </td>*@
+        @*<td>
             @Html.DisplayFor(modelItem => item.RoomId)
-        </td>
+        </td>*@
         <td>
             @Html.DisplayFor(modelItem => item.Status)
         </td>

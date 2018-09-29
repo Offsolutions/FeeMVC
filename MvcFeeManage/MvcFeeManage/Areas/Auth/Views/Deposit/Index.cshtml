@@ -13,17 +13,17 @@
 <table class="table">
     <tr>
         <th>
-            @Html.DisplayNameFor(model => model.RollNo)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.CourseId)
+            @Html.DisplayNameFor(model => model.Date)
         </th>
         <th>
             @Html.DisplayNameFor(model => model.ReciptNo)
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.Date)
+            @Html.DisplayNameFor(model => model.RollNo)
         </th>
+        <th>
+            Course
+        </th> 
         <th>
             @Html.DisplayNameFor(model => model.Amount)
         </th>
@@ -40,8 +40,8 @@
         </td>
         <td>
            @{var coursename = db.Courses.Where(x => x.CourseId == item.CourseId).ToList();}
-               @*@Html.DisplayFor(modelItem => item.CourseId)*@
           @coursename[0].CourseName
+            @*@Html.DisplayFor(modelItem => item.CourseId)*@
         </td>
         <td>
             @Html.DisplayFor(modelItem => item.ReciptNo)
