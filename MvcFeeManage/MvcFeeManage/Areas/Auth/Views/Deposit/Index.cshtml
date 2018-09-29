@@ -1,8 +1,10 @@
 ﻿@model IEnumerable<MvcFeeManage.Areas.Auth.Models.Recipt_Details>
+@using MvcFeeManage.Areas.Auth.Models
 
 @{
     ViewBag.Title = "Index";
     Layout = "~/Areas/Auth/Views/Shared/Layout.cshtml";
+    dbcontext db = new dbcontext();
 }
 
 <h2><b>Index</b></h2>
@@ -37,7 +39,9 @@
             @Html.DisplayFor(modelItem => item.RollNo)
         </td>
         <td>
-            @Html.DisplayFor(modelItem => item.CourseId)
+           @{var coursename = db.Courses.Where(x => x.CourseId == item.CourseId).ToList();}
+               @*@Html.DisplayFor(modelItem => item.CourseId)*@
+          @coursename[0].CourseName
         </td>
         <td>
             @Html.DisplayFor(modelItem => item.ReciptNo)

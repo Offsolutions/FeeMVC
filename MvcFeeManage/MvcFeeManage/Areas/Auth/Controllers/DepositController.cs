@@ -62,13 +62,13 @@ namespace MvcFeeManage.Areas.Auth.Controllers
         // POST: Auth/Deposit/Create
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create(int Amount, int Discount, string CourseId, DateTime Alert, DateTime date,Recipt_Details receiptdetail)
+        public ActionResult Create(int Amount, int Discount, int CourseId, DateTime Alert, DateTime date,Recipt_Details receiptdetail)
         {
             try
             {
                 // TODO: Add insert logic here
                 Fees_Master feesmaster = db.Fees_Master.FirstOrDefault(x => x.RollNo == rollno);
-                feesmaster.discount = (Convert.ToInt32(feesmaster.discount) + Convert.ToInt32(Discount)).ToString();
+                feesmaster.discount = (Convert.ToInt32(feesmaster.discount) + Convert.ToInt32(Discount));
                 feesmaster.Date = date;
                 feesmaster.AlertDate = Alert;
                 feesmaster.PaidFees += Amount;

@@ -201,6 +201,7 @@
     <Compile Include="Areas\Auth\Controllers\CoursesController.cs" />
     <Compile Include="Areas\Auth\Controllers\DefaultController.cs" />
     <Compile Include="Areas\Auth\Controllers\DepositController.cs" />
+    <Compile Include="Areas\Auth\Controllers\ExamRegController.cs" />
     <Compile Include="Areas\Auth\Controllers\InquiryController.cs" />
     <Compile Include="Areas\Auth\Controllers\LogsController.cs" />
     <Compile Include="Areas\Auth\Controllers\ReceiptController.cs" />
@@ -486,6 +487,11 @@
     <Content Include="Areas\assets\lib\roboto\Roboto-ThinItalic.woff" />
     <Content Include="Areas\assets\lib\roboto\Roboto-ThinItalic.woff2" />
     <Content Include="Areas\assets\lib\roboto\Roboto-ThinItalicd41d.eot" />
+    <Content Include="Areas\Auth\Views\ExamReg\Create.cshtml" />
+    <Content Include="Areas\Auth\Views\ExamReg\Delete.cshtml" />
+    <Content Include="Areas\Auth\Views\ExamReg\Details.cshtml" />
+    <Content Include="Areas\Auth\Views\ExamReg\Edit.cshtml" />
+    <Content Include="Areas\Auth\Views\ExamReg\Index.cshtml" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="Scripts\jquery-1.10.2.js" />
     <Content Include="Scripts\jquery-1.10.2.min.js" />

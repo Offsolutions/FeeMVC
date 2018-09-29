@@ -46,7 +46,7 @@ namespace MvcFeeManage.Areas.Auth.Models
         [DataType(DataType.EmailAddress, ErrorMessage = "Please enter a valid email address.")]
         [RegularExpression("^([a-zA-Z0-9_\\-\\.]+)@((\\[[0-9]{1,3}\\.[0-9]{1,3}\\.[0-9]{1,3}\\.)|(([a-zA-Z0-9\\-]+\\.)+))([a-zA-Z]{2,4}|[0-9]{1,3})(\\]?)$", ErrorMessage = "You must provide a valid email address.")]
         public string email { get; set; }
-        public string discount { get; set; }
+        public int discount { get; set; }
         [DataType(DataType.Date)]
         [DisplayFormat(DataFormatString = "{0:yyyy-MM-dd}", ApplyFormatInEditMode = true)]
         public Nullable<System.DateTime> date { get; set; }
@@ -81,7 +81,7 @@ namespace MvcFeeManage.Areas.Auth.Models
         [DisplayFormat(DataFormatString = "{0:yyyy-MM-dd}", ApplyFormatInEditMode = true)]
         public Nullable<System.DateTime> AlertDate { get; set; }
         public Nullable<System.DateTime> Date { get; set; }
-        public string discount { get; set; }
+        public int discount { get; set; }
         public bool Status { get; set; }
     }
     public class Course
@@ -139,7 +139,7 @@ namespace MvcFeeManage.Areas.Auth.Models
         [Key]
         public int Id { get; set; }
         public int RollNo { get; set; }
-        public string CourseId { get; set; }
+        public int CourseId { get; set; }
         public string ReciptNo { get; set; }
         [DataType(DataType.Date)]
         [DisplayFormat(DataFormatString = "{0:yyyy-MM-dd}", ApplyFormatInEditMode = true)]
@@ -204,7 +204,7 @@ namespace MvcFeeManage.Areas.Auth.Models
         public string contact { get; set; }
         public string address { get; set; }
         public string referedby { get; set; }
-        public string CourseId { get; set; }
+        public int CourseId { get; set; }
         public bool status { get; set; }
     }
     public class tblfeedback
@@ -218,8 +218,52 @@ namespace MvcFeeManage.Areas.Auth.Models
         public string feedback { get; set; }
         public int days { get; set; }
         public string type { get; set; }
-        public string nextfollow { get; set; }
+        public DateTime nextfollow { get; set; }
         public string status { get; set; }
         public string loginid { get; set; }
+    }
+    public class tblfill
+    {
+        [Key]
+        public int Id { get; set; }
+        [DataType(DataType.Date)]
+        [DisplayFormat(DataFormatString = "{0:yyyy-MM-dd}", ApplyFormatInEditMode = true)]
+        public DateTime date { get; set; }
+        public string name { get; set; }
+        public string passport { get; set; }
+        [DataType(DataType.Date)]
+        [DisplayFormat(DataFormatString = "{0:yyyy-MM-dd}", ApplyFormatInEditMode = true)]
+        public DateTime dob { get; set; }
+        [DataType(DataType.Date)]
+        [DisplayFormat(DataFormatString = "{0:yyyy-MM-dd}", ApplyFormatInEditMode = true)]
+        public DateTime doe { get; set; }
+        public string choice1 { get; set; }
+        public string choice2 { get; set; }
+        public string choice3 { get; set; }
+        public string module { get; set; }
+        public string v1 { get; set; }
+        public string v2 { get; set; }
+        public string v3 { get; set; }
+        public string mode { get; set; }
+        public string instname { get; set; }
+        public string status { get; set; }
+        public string fid { get; set; }
+        public string uname { get; set; }
+        public string pass { get; set; }
+    }
+    public enum module
+    {
+        GT,
+        AC,
+        PTE
+    }
+    public enum status
+    {
+        Idp,
+        British,
+        Booked,
+        Not_Booked,
+        Registered,
+        Walkin
     }
 }
