@@ -171,6 +171,7 @@ namespace MvcFeeManage.Areas.Auth.Controllers
         public ActionResult DeleteConfirmed(int id)
         {
             tblstudentdata tblstudentdata = db.tblstudentdata.Find(id);
+            int roll = tblstudentdata.rollno;
             ViewBag.CourseId = new SelectList(db.Courses, "CourseId", "CourseName");
             img = tblstudentdata.image;
             #region delete file
@@ -188,6 +189,21 @@ namespace MvcFeeManage.Areas.Auth.Controllers
             #endregion
             db.tblstudentdata.Remove(tblstudentdata);
             db.SaveChanges();
+
+            Fees_Master feemaster = new Fees_Master();
+            feemaster = db.Fees_Master.Where(x => x.RollNo == roll).FirstOrDefault();
+            if (feemaster != null)
+            {
+                db.Fees_Master.Remove(feemaster);
+                db.SaveChanges();
+            }
+            StudentCourse studentcourse = new StudentCourse();
+            studentcourse = db.StudentCourses.Where(x => x.RollNo == roll).FirstOrDefault();
+            if (studentcourse != null)
+            {
+                db.StudentCourses.Remove(studentcourse);
+                db.SaveChanges();
+            }
             return RedirectToAction("Index");
         }
  

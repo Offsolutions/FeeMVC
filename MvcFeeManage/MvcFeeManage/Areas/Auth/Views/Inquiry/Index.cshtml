@@ -51,7 +51,7 @@
             {
                 <tr>
                     <td>
-                        @Convert.ToDateTime(@item.date).ToString("dd - MM - yyyy")
+                        @Convert.ToDateTime(@item.date).ToString("dd-MM-yyyy")
                     </td>
                     <td>
                         @Html.DisplayFor(modelItem => item.inquiryid)
@@ -72,7 +72,8 @@
                         @Html.DisplayFor(modelItem => item.referedby)
                     </td>
                     <td>                    
-                        @Html.DisplayFor(modelItem => item.CourseId)
+                        @{var coursename = db.Courses.Where(x => x.CourseId == item.CourseId).ToList();}
+                        @coursename[0].CourseName
                     </td>
                     <td>
                         @Html.DisplayFor(modelItem => item.status)

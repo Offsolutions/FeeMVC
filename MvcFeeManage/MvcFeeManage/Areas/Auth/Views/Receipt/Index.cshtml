@@ -42,13 +42,22 @@
                         @Html.DisplayFor(modelItem => item.End_no)
                     </td>
                     <td>
-                        @Convert.ToDateTime(@item.Date).ToString(" dd - MM - yyyy")
+                        @Convert.ToDateTime(@item.Date).ToString(" dd-MM-yyyy")
                     </td>
                     <td>
                         @Html.DisplayFor(modelItem => item.Current_Recipt)
                     </td>
                     <td>
-                        @Html.DisplayFor(modelItem => item.Status)
+                        @{var active = item.Status;}
+                       @if(active==true)
+                       {
+                          @Html.Display("Active")
+                       }
+                       else
+                       {
+                        @Html.Display("Deactive")
+                       }
+                        @*@Html.DisplayFor(modelItem => item.Status)*@
                     </td>
                     <td>
                         @Html.ActionLink("Edit", "Edit", new { id = item.Id }) |
