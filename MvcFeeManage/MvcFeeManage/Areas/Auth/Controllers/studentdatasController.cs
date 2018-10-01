@@ -45,6 +45,7 @@ namespace MvcFeeManage.Areas.Auth.Controllers
         {
             ViewBag.CourseId = new SelectList(db.Courses, "CourseId", "CourseName");
             ViewBag.RoomId = new SelectList(db.tblrooms, "RoomId", "room");
+
             return View();
         }
 

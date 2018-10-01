@@ -4,6 +4,8 @@
     ViewBag.Title = "Index";
     Layout = "~/Areas/Auth/Views/Shared/Layout.cshtml";
     dbcontext db = new dbcontext();
+    var active = "Active";
+    var Deactive = "Deactive";
 }
 
 <h2><b>Index</b></h2>
@@ -65,7 +67,15 @@
             @Html.DisplayFor(modelItem => item.RoomId)
         </td>*@
         <td>
-            @Html.DisplayFor(modelItem => item.Status)
+            @if (item.status == true)
+            {
+                @active.ToString();
+            }
+            else
+            {
+                @Deactive.ToString();
+            }
+            @*@Html.DisplayFor(modelItem => item.Status)*@
         </td>
         <td>
             @Html.ActionLink("Edit", "Edit", new { id=item.Id }) |

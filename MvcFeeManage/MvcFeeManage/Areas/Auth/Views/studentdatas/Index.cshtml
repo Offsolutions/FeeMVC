@@ -3,6 +3,8 @@
 @{
     ViewBag.Title = "Index";
     Layout = "~/Areas/Auth/Views/Shared/Layout.cshtml";
+    var active = "Active";
+    var Deactive = "Deactive";
 }
 
 <h2><b>Index</b></h2>
@@ -66,15 +68,15 @@
                 </td>
 
                 <td>
-                    @{var active = item.Status;}
-                    @if (active == true)
+             
+                    @if (item.Status==true)
                     {
-                        @Html.Display("Active")
+                      @active.ToString();
                     }
                     else
-                    {
-                        @Html.Display("Deactive")
-                    }
+                     {
+                         @Deactive.ToString();
+                     }
                     @*@Html.DisplayFor(modelItem => item.Status)*@
                 </td>
                 <td>
@@ -85,7 +87,7 @@
                     @Html.ActionLink("Deposit", "Deposit", new { roll = item.rollno })
                 </td>
             </tr>
-        }
+          }
 
     </table>
 </div>
