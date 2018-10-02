@@ -19,7 +19,7 @@ namespace MvcFeeManage.Areas.Auth.Models
         [Required]
         [Display(Name = "Roll No.")]
         public int rollno { get; set; }
-        [Required]
+        [Required(ErrorMessage ="Enter Your Name")]
         [Display(Name = "Name")]
         public string name { get; set; }
         [DataType(DataType.Date)]
@@ -32,10 +32,12 @@ namespace MvcFeeManage.Areas.Auth.Models
         [AllowHtml]
         [Display(Name = "Address")]
         public string address { get; set; }
-        [RegularExpression(@"^([0-9]{10})$", ErrorMessage = "Invalid Mobile Number.")]
+        [Required(ErrorMessage ="Please Enter Your 10 Digit Mobile no")]
+        [DataType(DataType.PhoneNumber)]
         [Display(Name = "Phone No.")]
         public string phone { get; set; }
-        [RegularExpression(@"^([0-9]{10})$", ErrorMessage = "Invalid Mobile Number.")]
+        
+        [DataType(DataType.PhoneNumber)]
         [Display(Name = "Father Phone No.")]
         public string fatherphn { get; set; }
         [Display(Name = "Language")]
@@ -68,7 +70,7 @@ namespace MvcFeeManage.Areas.Auth.Models
         public string remarks { get; set; }
         [Display(Name = "Student Email")]
         [DataType(DataType.EmailAddress, ErrorMessage = "Please enter a valid email address.")]
-        [RegularExpression("^([a-zA-Z0-9_\\-\\.]+)@((\\[[0-9]{1,3}\\.[0-9]{1,3}\\.[0-9]{1,3}\\.)|(([a-zA-Z0-9\\-]+\\.)+))([a-zA-Z]{2,4}|[0-9]{1,3})(\\]?)$", ErrorMessage = "You must provide a valid email address.")]
+        
         public string email { get; set; }
         [Display(Name = "Discount")]
         public int discount { get; set; }

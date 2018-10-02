@@ -30,7 +30,7 @@
         </div>
 
         <div class="form-group">
-            @Html.Label("Name", htmlAttributes: new { @class = "control-label col-md-2" })
+            @Html.Label("Name", htmlAttributes: new { @class = "control-label col-md-2" }) <span class="text-danger">*</span>
             <div class="col-md-10">
                 @Html.EditorFor(model => model.name, new { htmlAttributes = new { @class = "form-control" } })
                 @Html.ValidationMessageFor(model => model.name, "", new { @class = "text-danger" })
@@ -75,7 +75,7 @@
         <div class="form-group">
             @Html.Label("Phone", htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
-                @Html.EditorFor(model => model.phone, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.EditorFor(model => model.phone, new { htmlAttributes = new { @class = "form-control",@placeholder="Please Enter 10 Digit Mobile  Number" } })
                 @Html.ValidationMessageFor(model => model.phone, "", new { @class = "text-danger" })
             </div>
         </div>
@@ -83,7 +83,7 @@
         <div class="form-group">
             @Html.Label("Father Phone", htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
-                @Html.EditorFor(model => model.fatherphn, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.EditorFor(model => model.fatherphn, new { htmlAttributes = new { @class = "form-control", @placeholder = "Please Enter 10 Digit Mobile  Number" } })
                 @Html.ValidationMessageFor(model => model.fatherphn, "", new { @class = "text-danger" })
             </div>
         </div>
@@ -99,7 +99,7 @@
         <div class="form-group">
             @Html.Label("Language", htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
-                @Html.EditorFor(model => model.language, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.EditorFor(model => model.language, new { htmlAttributes = new { @class = "form-control", @placeholder = "Like English, Hindi, Punjabi" } })
                 @Html.ValidationMessageFor(model => model.language, "", new { @class = "text-danger" })
             </div>
         </div>
@@ -126,8 +126,8 @@
         <div class="form-group">
             @Html.Label("Prior Coaching", htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
-                 @Html.RadioButton("coaching", "Yes") Yes
-                 @Html.RadioButton("coaching", "No") No
+                Yes @Html.RadioButton("coaching", "Yes")
+                No @Html.RadioButton("coaching", "No")
                 
                 @Html.ValidationMessageFor(model => model.coaching, "", new { @class = "text-danger" })
             </div>
@@ -184,7 +184,7 @@
             </div>
         </div>
 
-        <div class="form-group">
+        <div class="form-group" style="display:none">
             @Html.Label("Discount", htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
                 @Html.EditorFor(model => model.discount, new { htmlAttributes = new { @class = "form-control" } })

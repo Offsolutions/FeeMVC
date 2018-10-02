@@ -17,6 +17,7 @@ namespace MvcFeeManage.Areas.Auth.Controllers
         private dbcontext db = new dbcontext();
         public static string img;
         // GET: Auth/studentdatas
+       
         public ActionResult Index()
         {
             var course = db.Courses.ToList();
@@ -43,10 +44,12 @@ namespace MvcFeeManage.Areas.Auth.Controllers
         // GET: Auth/studentdatas/Create
         public ActionResult Create()
         {
+            tblstudentdata student = new tblstudentdata();
+            student.date = System.DateTime.Now;
             ViewBag.CourseId = new SelectList(db.Courses, "CourseId", "CourseName");
             ViewBag.RoomId = new SelectList(db.tblrooms, "RoomId", "room");
 
-            return View();
+            return View(student);
         }
 
         // POST: Auth/studentdatas/Create
@@ -68,7 +71,7 @@ namespace MvcFeeManage.Areas.Auth.Controllers
                     var ab = db.tblstudentdata.Max(x => x.rollno);
                     tblstudentdata.rollno = Convert.ToInt32(ab) + 1;
                 }
-                tblstudentdata.uid = Session["User"].ToString();
+                tblstudentdata.uid = User.Identity.Name;
                 tblstudentdata.image = Help.uploadfile(file);
                 db.tblstudentdata.Add(tblstudentdata);
                 db.SaveChanges();
@@ -210,6 +213,7 @@ namespace MvcFeeManage.Areas.Auth.Controllers
  
         public ActionResult View(int roll)
         {
+            Session["roll"] = roll;
             return RedirectToAction("Index", "AssignCourse", new { roll = roll });
         }
         public ActionResult Deposit(int roll)

@@ -2,46 +2,47 @@
 @using MvcFeeManage.Areas.Auth.Models
 @{
     ViewBag.Title = "Index";
-    Layout = "~/Areas/Auth/Views/Shared/Layout.cshtml";
+    Layout = "~/Areas/Auth/Views/Shared/Profile.cshtml";
     dbcontext db = new dbcontext();
     var active = "Active";
     var Deactive = "Deactive";
 }
 
-<h2><b>Index</b></h2>
+<h2><b>Assign Course</b></h2>
 
 <p>
-    @Html.ActionLink("Create New", "Create")
+    @Html.ActionLink("Create New", "Create","",new { @class="btn btn-primary"})
 </p>
-<table class="table">
-    <tr>
-        <th>
-            @Html.DisplayNameFor(model => model.RollNo)
-        </th>
-        <th>
-          Course
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Admitdate)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.enddate)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Fees)
-        </th>
-        @*<th>
-            @Html.DisplayNameFor(model => model.Uid)
-        </th>*@
-        @*<th>
-            @Html.DisplayNameFor(model => model.RoomId)
-        </th>*@
-        <th>
-            @Html.DisplayNameFor(model => model.Status)
-        </th>
-        <th></th>
-    </tr>
-
+<table class="table" id="table1">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.RollNo)
+            </th>
+            <th>
+                Course
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Admitdate)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.enddate)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Fees)
+            </th>
+            @*<th>
+                    @Html.DisplayNameFor(model => model.Uid)
+                </th>*@
+            @*<th>
+                    @Html.DisplayNameFor(model => model.RoomId)
+                </th>*@
+            <th>
+                @Html.DisplayNameFor(model => model.Status)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
 @foreach (var item in Model) {
     <tr>
         <td>
@@ -69,11 +70,11 @@
         <td>
             @if (item.Status == true)
             {
-                @active.ToString();
+              <span class="label label-success">@active.ToString()</span>
             }
             else
             {
-                @Deactive.ToString();
+                <span class="label label-danger">@active.ToString()</span>
             }
             @*@Html.DisplayFor(modelItem => item.Status)*@
         </td>
