@@ -69,14 +69,14 @@
 
                 <td>
              
-                    @if (item.Status==true)
+                    @if (item.Status == true)
                     {
-                      @active.ToString();
+                        <span class="label label-success">@active.ToString()</span>
                     }
                     else
-                     {
-                         @Deactive.ToString();
-                     }
+                    {
+                        <span class="label label-danger">@Deactive.ToString()</span>
+                    }
                     @*@Html.DisplayFor(modelItem => item.Status)*@
                 </td>
                 <td>

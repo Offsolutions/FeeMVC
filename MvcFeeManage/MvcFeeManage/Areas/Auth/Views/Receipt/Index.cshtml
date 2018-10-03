@@ -3,12 +3,14 @@
 @{
     ViewBag.Title = "Index";
     Layout = "~/Areas/Auth/Views/Shared/Layout.cshtml";
+    var active = "Active";
+    var Deactive = "Deactive";
 }
 
-<h2><b>Index</b></h2>
+<h2><b>Receipt List</b></h2>
 
 <p>
-    @Html.ActionLink("Create New", "Create")
+    @Html.ActionLink("Create New", "Create", "", new { @class = "btn btn-primary" })
 </p>
 <div class="table-responsive">
     <table class="table table-striped table-bordered table-hover" id="dataTables-example">
@@ -47,15 +49,14 @@
                     <td>
                         @Html.DisplayFor(modelItem => item.Current_Recipt)
                     </td>
-                    <td>
-                        @{var active = item.Status;}
-                       @if(active==true)
+                    <td>                        
+                       @if (item.Status == true)
                        {
-                          @Html.Display("Active")
+                        <span class="label label-success">@active.ToString()</span>
                        }
                        else
                        {
-                        @Html.Display("Deactive")
+                        <span class="label label-danger">@Deactive.ToString()</span>
                        }
                         @*@Html.DisplayFor(modelItem => item.Status)*@
                     </td>

@@ -5,14 +5,14 @@
     Layout = "~/Areas/Auth/Views/Shared/Layout.cshtml";
 }
 
-<h2>Edit</h2>
+<h2>Student Registration</h2>
 
 @using (Html.BeginForm("Edit", "studentdatas", FormMethod.Post, new { enctype = "multipart/form-data" }))
 {
     @Html.AntiForgeryToken()
 
     <div class="form-horizontal">
-        <h4>Student Registration</h4>
+        <h4>Edit</h4>
         <hr />
         @Html.ValidationSummary(true, "", new { @class = "text-danger" })
         @Html.HiddenFor(model => model.Id)

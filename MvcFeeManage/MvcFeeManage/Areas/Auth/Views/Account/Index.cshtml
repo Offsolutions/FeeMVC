@@ -10,7 +10,7 @@
 <h2><b>Index</b></h2>
 
 <p>
-    @Html.ActionLink("Create New", "Create",null,new {@class="btn primary"})
+    @Html.ActionLink("Create New", "Create", "", new { @class = "btn btn-primary" })
 </p>
 <div class="table-responsive">
     <table class="table table-striped table-bordered table-hover" id="dataTables-example">
@@ -79,11 +79,11 @@
 
                         @if (item.status == true)
                         {
-                            @active.ToString();
+                            <span class="label label-success">@active.ToString()</span>
                         }
                         else
                         {
-                            @Deactive.ToString();
+                            <span class="label label-danger">@Deactive.ToString()</span>
                         }
                         @*@Html.DisplayFor(modelItem => item.status)*@
                     </td>

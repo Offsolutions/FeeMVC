@@ -15,9 +15,11 @@ namespace MvcFeeManage.Areas.Auth.Controllers
         public static int rollno;
         public static string receiptno;
         // GET: Auth/Deposit
-        public ActionResult Index()
+        public ActionResult Index(int roll)
         {
-            var recp = db.Recipt_Details.ToList();
+            TempData["roll"] = roll;
+            Session["roll"] = roll;
+            var recp = db.Recipt_Details.Where(x=>x.RollNo==roll).ToList();
             return View(recp);
         }
 
@@ -30,6 +32,8 @@ namespace MvcFeeManage.Areas.Auth.Controllers
         // GET: Auth/Deposit/Create
         public ActionResult Create(int roll)
         {
+            TempData["roll"] = roll;
+            Session["roll"] = roll;
             rollno = roll;
             StudentCourse course = db.StudentCourses.Where(x => x.RollNo == roll && x.Status == true).FirstOrDefault();
             var courses = db.Courses.Where(x => x.CourseId == course.CourseId);
@@ -88,7 +92,7 @@ namespace MvcFeeManage.Areas.Auth.Controllers
                 db.Recipt_Details.Add(receiptdetail);
                 db.SaveChanges();
 
-                return RedirectToAction("Index");
+                return RedirectToAction("Index", new { roll = rollno });
             }
             catch
             {

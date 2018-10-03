@@ -5,11 +5,11 @@
     Layout = "~/Areas/Auth/Views/Shared/Profile.cshtml";
 }
 
-<h2><b>Logs</b></h2>
+<h2><b>Fees Report</b></h2>
 
-<p>
+@*<p>
     @Html.ActionLink("Create New", "Create")
-</p>
+</p>*@
 <div class="table-responsive">
     <table class="table table-striped table-bordered table-hover" id="dataTables-example">
         <thead>
@@ -51,10 +51,10 @@
                         @Html.DisplayFor(modelItem => item.PaidFees)
                     </td>
                     <td>
-                        @Convert.ToDateTime(@item.AlertDate).ToString("dd - MM - yyyy")
+                        @Convert.ToDateTime(@item.AlertDate).ToString("dd-MM-yyyy")
                     </td>
                     <td>
-                        @Convert.ToDateTime(@item.Date).ToString("dd - MM - yyyy")
+                        @Convert.ToDateTime(@item.Date).ToString("dd-MM-yyyy")
                     </td>
                     <td>
                         @Html.DisplayFor(modelItem => item.discount)

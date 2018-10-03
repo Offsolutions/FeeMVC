@@ -217,8 +217,8 @@
         <div class="be-content">
             <div class="main-content container-fluid">
                 <div class="col-md-12 text-right" style="padding-top:20px">
-                    @Html.ActionLink("Assign Course","Index",new { roll=Session["roll"]},new { @class="label label-danger"}) |
-                    @Html.ActionLink("Logs", "Index", "Logs",new { id = Session["roll"] }, new { @class = "label label-warning" })
+                    @Html.ActionLink("Assign Course","Index", "AssignCourse", new { roll=Session["roll"]},new { @class="label label-danger"}) |
+                    @Html.ActionLink("Logs", "Index", "Deposit", new { roll = Session["roll"] }, new { @class = "label label-warning" })
                 </div>
                 <div class="panel panel-default panel-border-color panel-border-color-primary">
 

@@ -10,14 +10,14 @@
 
 }
 
-<h2>Create</h2>
+<h2><b>Student Registration</b></h2>
 
 @using (Html.BeginForm("Create", "studentdatas", FormMethod.Post, new { enctype = "multipart/form-data" }))
 {
     @Html.AntiForgeryToken()
 
     <div class="form-horizontal">
-        <h4>Student Registration</h4>
+        <h4>Create</h4>
         <hr />
         @Html.ValidationSummary(true, "", new { @class = "text-danger" })
 

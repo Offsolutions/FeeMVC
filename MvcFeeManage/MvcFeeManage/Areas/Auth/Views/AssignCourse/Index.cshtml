@@ -11,7 +11,7 @@
 <h2><b>Assign Course</b></h2>
 
 <p>
-    @Html.ActionLink("Create New", "Create","",new { @class="btn btn-primary"})
+    @Html.ActionLink("Create New", "Create", "", new { @class = "btn btn-primary" })
 </p>
 <table class="table" id="table1">
     <thead>
@@ -74,9 +74,9 @@
             }
             else
             {
-                <span class="label label-danger">@active.ToString()</span>
+                <span class="label label-danger">@Deactive.ToString()</span>
             }
-            @*@Html.DisplayFor(modelItem => item.Status)*@
+       
         </td>
         <td>
             @Html.ActionLink("Edit", "Edit", new { id=item.Id }) |

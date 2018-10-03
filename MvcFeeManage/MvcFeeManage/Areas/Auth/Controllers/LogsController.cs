@@ -11,9 +11,9 @@ namespace MvcFeeManage.Areas.Auth.Controllers
     {
         dbcontext db = new dbcontext();
         // GET: Auth/Logs
-        public ActionResult Index(int id)
+        public ActionResult Index()
         {
-            return View(db.Fees_Master.Where(x=>x.RollNo==id).ToList());
+            return View(db.Fees_Master.ToList());
         }
 
         // GET: Auth/Logs/Details/5

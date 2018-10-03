@@ -5,12 +5,14 @@
     ViewBag.Title = "Index";
     Layout = "~/Areas/Auth/Views/Shared/Layout.cshtml";
     dbcontext db = new dbcontext();
+    var active = "Active";
+    var Deactive = "Deactive";
 }
 
-<h2><b>Index</b></h2>
+<h2><b>Inquiry List</b></h2>
 
 <p>
-    @Html.ActionLink("Create New", "Create")
+    @Html.ActionLink("Create New", "Create", "", new { @class = "btn btn-primary" })
 </p>
 <div class="table-responsive">
     <table class="table table-striped table-bordered table-hover" id="dataTables-example">
@@ -76,7 +78,14 @@
                         @coursename[0].CourseName
                     </td>
                     <td>
-                        @Html.DisplayFor(modelItem => item.status)
+                        @if (item.status == true)
+                        {
+                            <span class="label label-success">@active.ToString()</span>
+                        }
+                        else
+                        {
+                            <span class="label label-danger">@Deactive.ToString()</span>
+                        }
                     </td>
                     <td>
                         @Html.ActionLink("Edit", "Edit", new { id = item.Id }) |
