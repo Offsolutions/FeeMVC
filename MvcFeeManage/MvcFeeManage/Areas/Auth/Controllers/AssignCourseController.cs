@@ -19,6 +19,7 @@ namespace MvcFeeManage.Areas.Auth.Controllers
         public ActionResult Index(int roll)
         {
             rollno = roll;
+            TempData["roll"] = roll;
             var course = db.Courses.ToList();
             var room = db.tblrooms.ToList();
             return View(db.StudentCourses.Where(x => x.RollNo == roll).ToList());

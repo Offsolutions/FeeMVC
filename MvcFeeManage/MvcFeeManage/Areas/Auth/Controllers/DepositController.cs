@@ -56,7 +56,8 @@ namespace MvcFeeManage.Areas.Auth.Controllers
                 ViewBag.Receipt = Convert.ToInt32(ab) + 1;
             }
             receiptno = ViewData["Receipt"].ToString();
-            return View();
+            receiptd.Date = System.DateTime.Now;
+            return View(receiptd);
         }
 
         // POST: Auth/Deposit/Create
