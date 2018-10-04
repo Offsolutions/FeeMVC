@@ -13,7 +13,7 @@ namespace MvcFeeManage.Areas.Auth.Controllers
     public class AssignCourseController : Controller
     {
         private dbcontext db = new dbcontext();
-        public static int rollno;
+        public static int rollno, last;
 
         // GET: Auth/AssignCourse
         public ActionResult Index(int roll)
@@ -87,6 +87,7 @@ namespace MvcFeeManage.Areas.Auth.Controllers
             }
             StudentCourse student_Course = db.StudentCourses.Find(id);
             rollno = student_Course.RollNo;
+            last = Convert.ToInt32(student_Course.Fees);
             ViewBag.CourseId = new SelectList(db.Courses, "CourseId", "CourseName");
             ViewBag.RoomId = new SelectList(db.tblrooms, "RoomId", "room");
             if (student_Course == null)
@@ -116,6 +117,7 @@ namespace MvcFeeManage.Areas.Auth.Controllers
                 //feemaster.CourseId = student_Course.CourseId;
                 feemaster.AlertDate = System.DateTime.Now.AddDays(2);
                 feemaster.Status = true;
+                feemaster.TotalFees = feemaster.TotalFees - last;
                 feemaster.TotalFees += Convert.ToInt32(student_Course.Fees);
                 db.Entry(feemaster).State = EntityState.Modified;
                 db.SaveChanges();

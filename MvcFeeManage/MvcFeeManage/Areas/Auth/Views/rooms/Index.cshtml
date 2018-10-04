@@ -3,6 +3,8 @@
 @{
     ViewBag.Title = "Index";
     Layout = "~/Areas/Auth/Views/Shared/Layout.cshtml";
+    var active = "Active";
+    var Deactive = "Deactive";
 }
 
 <h2><b>Rooms List</b></h2>
@@ -30,12 +32,19 @@
                         @Html.DisplayFor(modelItem => item.room)
                     </td>
                     <td>
-                        @Html.DisplayFor(modelItem => item.status)
+                        @if (item.status == true)
+                        {
+                            <span class="label label-success">@active.ToString()</span>
+                        }
+                        else
+                        {
+                            <span class="label label-danger">@Deactive.ToString()</span>
+                        }
                     </td>
                     <td>
-                        @Html.ActionLink("Edit", "Edit", new { id = item.RoomId }) |
-                        @Html.ActionLink("Details", "Details", new { id = item.RoomId }) |
-                        @Html.ActionLink("Delete", "Delete", new { id = item.RoomId })
+                        @Html.ActionLink("Edit", "Edit", new { id = item.RoomId }, new { @class = "label label-warning" }) |
+                        @Html.ActionLink("Details", "Details", new { id = item.RoomId }, new { @class = "label label-primary" }) |
+                        @Html.ActionLink("Delete", "Delete", new { id = item.RoomId }, new { @class = "label label-danger" })
                     </td>
                 </tr>
             }

@@ -7,7 +7,7 @@
 }
 
 <h2><b>Assign Course</b></h2>
-@using (Html.BeginForm("Create", "studentdatas", FormMethod.Post, new { enctype = "multipart/form-data" }))
+@using (Html.BeginForm())
 {
     @Html.AntiForgeryToken()
     
@@ -27,7 +27,15 @@
             @Html.Label("Course", htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
                 @Html.DropDownList("CourseId", (IEnumerable<SelectListItem>)ViewBag.CourseId, "Select Course", htmlAttributes: new { @class = "form-control", @onchange = "Courses()", @id = "cityDropDown" })
-                @*@Html.DropDownList("CourseId", null, htmlAttributes: new { @class = "form-control" })*@
+             
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.Fees, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.Fees, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.Fees, "", new { @class = "text-danger" })
             </div>
         </div>
 
@@ -47,22 +55,13 @@
             </div>
         </div>
 
-        <div class="form-group">
-            @Html.LabelFor(model => model.Fees, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.Fees, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.Fees, "", new { @class = "text-danger" })
-            </div>
-        </div>
-
-        <div class="form-group">
+        <div class="form-group" style="display:none">
             @Html.Label("Room", htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
                 @Html.DropDownList("RoomId", null, htmlAttributes: new { @class = "form-control" })
 
             </div>
         </div>
-
         <div class="form-group">
             @Html.LabelFor(model => model.Status, htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
@@ -76,7 +75,7 @@
         <div class="form-group">
             <div class="col-md-offset-2 col-md-10">
                 <input type="submit" value="Create" class="btn btn-danger" />
- 		@Html.ActionLink("Back to List", "Index", null, new { @class = "btn btn-danger" })
+ 		@*@Html.ActionLink("Back to List", "Index", null, new { @class = "btn btn-danger" })*@
 
             </div>
         </div>
@@ -106,7 +105,7 @@
                 $.each($.parseJSON(result), function (i, city) {
                     debugger;
                     var a = city.id;
-                    $("#addmission").val(city.Fees)
+                    $("#Fees").val(city.Fees)
                 })
 
             },

@@ -302,6 +302,7 @@ namespace MvcFeeManage.Areas.Auth.Models
     {
         [Key]
         public int Id { get; set; }
+        [Display(Name = "Date")]
         [DataType(DataType.Date)]
         [DisplayFormat(DataFormatString = "{0:yyyy-MM-dd}", ApplyFormatInEditMode = true)]
         public DateTime date { get; set; }
@@ -325,11 +326,11 @@ namespace MvcFeeManage.Areas.Auth.Models
         public string choice3 { get; set; }
         [Display(Name = "Module Type")]
         public string module { get; set; }
-        [Display(Name = "v1")]
+        [Display(Name = "Venue 1")]
         public string v1 { get; set; }
-        [Display(Name = "v2")]
+        [Display(Name = "Venue 2")]
         public string v2 { get; set; }
-        [Display(Name = "v3")]
+        [Display(Name = "Venue 3")]
         public string v3 { get; set; }
         [Display(Name = "Cash Mode")]
         public string mode { get; set; }

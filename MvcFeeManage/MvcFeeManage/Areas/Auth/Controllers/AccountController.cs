@@ -40,7 +40,9 @@ namespace MvcFeeManage.Areas.Auth.Controllers
         // GET: Auth/Account/Create
         public ActionResult Create()
         {
-            return View();
+            tblreceptionist receptionist = new tblreceptionist();
+            receptionist.date = System.DateTime.Now;
+            return View(receptionist);
         }
 
         // POST: Auth/Account/Create

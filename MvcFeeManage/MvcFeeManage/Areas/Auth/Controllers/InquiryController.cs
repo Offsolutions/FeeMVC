@@ -40,11 +40,10 @@ namespace MvcFeeManage.Areas.Auth.Controllers
         // GET: Auth/Inquiry/Create
         public ActionResult Create()
         {
-            //IEnumerable<SelectListItem> courses = new SelectList(db.Courses.ToList(), "CourseId", "CourseName");
-
-            //ViewBag.CourseId = courses;
+            tblinquiry inquiry = new tblinquiry();
+            inquiry.date= System.DateTime.Now;
             ViewBag.CourseId = new SelectList(db.Courses, "CourseId", "CourseName");
-            return View();
+            return View(inquiry);
         }
 
         // POST: Auth/Inquiry/Create

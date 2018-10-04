@@ -6,6 +6,7 @@ using System.Web.Mvc;
 using MvcFeeManage.Areas.Auth.Models;
 using onlineportal.Areas.AdminPanel.Models;
 using System.Data.Entity;
+using System.Net;
 
 namespace MvcFeeManage.Areas.Auth.Controllers
 {
@@ -77,8 +78,6 @@ namespace MvcFeeManage.Areas.Auth.Controllers
                 feesmaster.Date = date;
                 feesmaster.AlertDate = Alert;
                 feesmaster.PaidFees += Amount;
-
-  
                 feesmaster.Status = true;
                 db.Entry(feesmaster).State = EntityState.Modified;
                 db.SaveChanges();
@@ -123,25 +122,56 @@ namespace MvcFeeManage.Areas.Auth.Controllers
         }
 
         // GET: Auth/Deposit/Delete/5
-        public ActionResult Delete(int id)
+        public ActionResult Delete(int? id)
         {
-            return View();
+            if (id == null)
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            }
+            Recipt_Details receiptdetail = db.Recipt_Details.Find(id);
+            ViewBag.CourseId = new SelectList(db.Courses, "CourseId", "CourseName");
+            if (receiptdetail == null)
+            {
+                return HttpNotFound();
+            }
+            return View(receiptdetail);
         }
 
-        // POST: Auth/Deposit/Delete/5
-        [HttpPost]
-        public ActionResult Delete(int id, FormCollection collection)
+        // POST: Auth/Inquiry/Delete/5
+        [HttpPost, ActionName("Delete")]
+        [ValidateAntiForgeryToken]
+        public ActionResult DeleteConfirmed(int id)
         {
-            try
-            {
-                // TODO: Add delete logic here
+            Recipt_Details receiptdetail = db.Recipt_Details.Find(id);
+            db.Recipt_Details.Remove(receiptdetail);
+            db.SaveChanges();
 
-                return RedirectToAction("Index");
-            }
-            catch
-            {
-                return View();
-            }
+            Fees_Master feesmaster = db.Fees_Master.FirstOrDefault(x => x.RollNo == receiptdetail.RollNo);
+            feesmaster.PaidFees = feesmaster.PaidFees - receiptdetail.Amount;
+            db.Entry(feesmaster).State = EntityState.Modified;
+            db.SaveChanges();
+
+            return RedirectToAction("Index");
         }
+        //public ActionResult Delete(int id)
+        //{
+        //    return View();
+        //}
+
+        //// POST: Auth/Deposit/Delete/5
+        //[HttpPost]
+        //public ActionResult Delete(int id, FormCollection collection)
+        //{
+        //    try
+        //    {
+        //        // TODO: Add delete logic here
+
+        //        return RedirectToAction("Index");
+        //    }
+        //    catch
+        //    {
+        //        return View();
+        //    }
+        //}
     }
 }

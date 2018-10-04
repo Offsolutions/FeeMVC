@@ -493,6 +493,7 @@
     <Content Include="Areas\Auth\Views\ExamReg\Edit.cshtml" />
     <Content Include="Areas\Auth\Views\ExamReg\Index.cshtml" />
     <Content Include="Areas\Auth\Views\Shared\Profile.cshtml" />
+    <Content Include="Areas\Auth\Views\Deposit\Delete.cshtml" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="Scripts\jquery-1.10.2.js" />
     <Content Include="Scripts\jquery-1.10.2.min.js" />

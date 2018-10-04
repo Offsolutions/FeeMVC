@@ -38,7 +38,9 @@ namespace MvcFeeManage.Areas.Auth.Controllers
         // GET: Auth/ExamReg/Create
         public ActionResult Create()
         {
-            return View();
+            tblfill fill = new tblfill();
+            fill.date = System.DateTime.Now;
+            return View(fill);
         }
 
         // POST: Auth/ExamReg/Create
