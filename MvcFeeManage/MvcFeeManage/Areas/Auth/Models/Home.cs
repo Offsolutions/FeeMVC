@@ -110,8 +110,8 @@ namespace MvcFeeManage.Areas.Auth.Models
         public int PaidFees { get; set; }
         [Display(Name = "Alert Date")]
         [DataType(DataType.Date)]
-        [DisplayFormat(DataFormatString = "{0:yyyy-MM-dd}", ApplyFormatInEditMode = true)]
-        public Nullable<System.DateTime> AlertDate { get; set; }
+        //[DisplayFormat(DataFormatString = "{0:yyyy-MM-dd}", ApplyFormatInEditMode = true)]
+        public DateTime AlertDate { get; set; }
         [Display(Name = "Date")]
         public Nullable<System.DateTime> Date { get; set; }
         [Display(Name = "Discount")]
