@@ -151,7 +151,7 @@ namespace MvcFeeManage.Areas.Auth.Controllers
             db.Entry(feesmaster).State = EntityState.Modified;
             db.SaveChanges();
 
-            return RedirectToAction("Index");
+            return RedirectToAction("Index", new { roll = receiptdetail.RollNo });
         }
         public ActionResult invoice(int id)
         {
