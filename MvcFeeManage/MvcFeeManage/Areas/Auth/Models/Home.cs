@@ -284,6 +284,7 @@ namespace MvcFeeManage.Areas.Auth.Models
         [DataType(DataType.Date)]
         [DisplayFormat(DataFormatString = "{0:yyyy-MM-dd}", ApplyFormatInEditMode = true)]
         public DateTime date { get; set; }
+        [AllowHtml]
         public string inquiryid { get; set; }
         [Display(Name = "Feedback")]
         public string feedback { get; set; }
