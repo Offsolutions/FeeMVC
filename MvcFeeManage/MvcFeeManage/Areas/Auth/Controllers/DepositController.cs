@@ -91,7 +91,7 @@ namespace MvcFeeManage.Areas.Auth.Controllers
                 db.Recipt_Details.Add(receiptdetail);
                 db.SaveChanges();
 
-                return RedirectToAction("Index", new { roll = rollno });
+                return RedirectToAction("invoice", new { id = receiptno });
             }
             catch
             {
@@ -152,6 +152,10 @@ namespace MvcFeeManage.Areas.Auth.Controllers
             db.SaveChanges();
 
             return RedirectToAction("Index", new { roll = receiptdetail.RollNo });
+        }
+        public ActionResult invoice(int id)
+        {
+            return View();
         }
         //public ActionResult Delete(int id)
         //{
