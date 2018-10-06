@@ -54,6 +54,7 @@ namespace MvcFeeManage.Areas.Auth.Controllers
             {
                 db.tblfills.Add(tblfill);
                 db.SaveChanges();
+                TempData["Success"] = "Saved Successfully";
                 return RedirectToAction("Index");
             }
 
@@ -86,6 +87,7 @@ namespace MvcFeeManage.Areas.Auth.Controllers
             {
                 db.Entry(tblfill).State = EntityState.Modified;
                 db.SaveChanges();
+                TempData["Success"] = "Updated Successfully";
                 return RedirectToAction("Index");
             }
             return View(tblfill);
@@ -114,6 +116,7 @@ namespace MvcFeeManage.Areas.Auth.Controllers
             tblfill tblfill = db.tblfills.Find(id);
             db.tblfills.Remove(tblfill);
             db.SaveChanges();
+            TempData["Success"] = "Deleted Successfully";
             return RedirectToAction("Index");
         }
 

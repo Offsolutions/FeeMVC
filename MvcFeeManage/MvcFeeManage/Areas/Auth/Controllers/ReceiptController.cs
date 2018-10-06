@@ -52,6 +52,7 @@ namespace MvcFeeManage.Areas.Auth.Controllers
             {
                 db.tblReceipt.Add(tblReceipt);
                 db.SaveChanges();
+                TempData["Success"] = "Saved Successfully";
                 return RedirectToAction("Index");
             }
 
@@ -84,6 +85,7 @@ namespace MvcFeeManage.Areas.Auth.Controllers
             {
                 db.Entry(tblReceipt).State = EntityState.Modified;
                 db.SaveChanges();
+                TempData["Success"] = "Updated Successfully";
                 return RedirectToAction("Index");
             }
             return View(tblReceipt);
@@ -112,6 +114,7 @@ namespace MvcFeeManage.Areas.Auth.Controllers
             tblReceipt tblReceipt = db.tblReceipt.Find(id);
             db.tblReceipt.Remove(tblReceipt);
             db.SaveChanges();
+            TempData["Success"] = "Deleted Successfully";
             return RedirectToAction("Index");
         }
 

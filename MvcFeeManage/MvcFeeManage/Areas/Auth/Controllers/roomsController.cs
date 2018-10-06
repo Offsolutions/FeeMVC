@@ -52,6 +52,7 @@ namespace MvcFeeManage.Areas.Auth.Controllers
             {
                 db.tblrooms.Add(tblroom);
                 db.SaveChanges();
+                TempData["Success"] = "Saved Successfully";
                 return RedirectToAction("Index");
             }
 
@@ -84,6 +85,7 @@ namespace MvcFeeManage.Areas.Auth.Controllers
             {
                 db.Entry(tblroom).State = EntityState.Modified;
                 db.SaveChanges();
+                TempData["Success"] = "Updated Successfully";
                 return RedirectToAction("Index");
             }
             return View(tblroom);
@@ -112,6 +114,7 @@ namespace MvcFeeManage.Areas.Auth.Controllers
             tblroom tblroom = db.tblrooms.Find(id);
             db.tblrooms.Remove(tblroom);
             db.SaveChanges();
+            TempData["Success"] = "Deleted Successfully";
             return RedirectToAction("Index");
         }
 

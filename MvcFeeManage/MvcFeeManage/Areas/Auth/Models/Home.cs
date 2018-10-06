@@ -130,27 +130,6 @@ namespace MvcFeeManage.Areas.Auth.Models
         public string Fees { get; set; }
         //public virtual ICollection<Student_Course> Student_Course { get; set; }
     }
-    //public class Student_Course
-    //{
-    //    [Key]
-    //    public int Id { get; set; }
-    //    public int RollNo { get; set; }
-    //    public string CourseId { get; set; }
-
-    //    [DataType(DataType.Date)]
-    //    [DisplayFormat(DataFormatString = "{0:yyyy-MM-dd}", ApplyFormatInEditMode = true)]
-    //    public Nullable<System.DateTime> Admitdate { get; set; }
-
-    //    [DataType(DataType.Date)]
-    //    [DisplayFormat(DataFormatString = "{0:yyyy-MM-dd}", ApplyFormatInEditMode = true)]
-    //    public Nullable<System.DateTime> enddate { get; set; }
-    //    public string Fees { get; set; }
-    //    public string Uid { get; set; }
-    //    public int RoomId { get; set; }
-    //    public bool Status { get; set; }
-
-    //}
-
     public class StudentCourse
     {
         [Key]
@@ -258,6 +237,7 @@ namespace MvcFeeManage.Areas.Auth.Models
         [DataType(DataType.Date)]
         [DisplayFormat(DataFormatString = "{0:yyyy-MM-dd}", ApplyFormatInEditMode = true)]
         public DateTime date { get; set; }
+        [Display(Name = "Inquiry No.")]
         public string inquiryid { get; set; }
         [Required]
         [Display(Name = "Name")]
@@ -271,8 +251,9 @@ namespace MvcFeeManage.Areas.Auth.Models
         public string address { get; set; }
         [Display(Name = "Reffered By")]
         public string referedby { get; set; }
-        [Display(Name = "Course")]
-        public int CourseId { get; set; }
+        [Display(Name = "Category")]
+        public int Categoryid { get; set; }
+        public virtual Category Category { get; set; }
         [Display(Name = "Status")]
         public bool status { get; set; }
     }
@@ -359,5 +340,12 @@ namespace MvcFeeManage.Areas.Auth.Models
         Not_Booked,
         Registered,
         Walkin
+    }
+    public class Category
+    {
+        [Key]
+        public int Categoryid { get; set; }
+        public string Name { get; set; }
+        public virtual ICollection<tblinquiry> tblinquiry { get; set; }
     }
 }

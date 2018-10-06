@@ -90,7 +90,7 @@ namespace MvcFeeManage.Areas.Auth.Controllers
                 receiptdetail.Active = true;
                 db.Recipt_Details.Add(receiptdetail);
                 db.SaveChanges();
-
+                TempData["Success"] = "Saved Successfully";
                 return RedirectToAction("invoice", new { id = receiptno });
             }
             catch
@@ -150,32 +150,12 @@ namespace MvcFeeManage.Areas.Auth.Controllers
             feesmaster.PaidFees = feesmaster.PaidFees - receiptdetail.Amount;
             db.Entry(feesmaster).State = EntityState.Modified;
             db.SaveChanges();
-
+            TempData["Success"] = "Deleted Successfully";
             return RedirectToAction("Index", new { roll = receiptdetail.RollNo });
         }
         public ActionResult invoice(int id)
         {
             return View();
         }
-        //public ActionResult Delete(int id)
-        //{
-        //    return View();
-        //}
-
-        //// POST: Auth/Deposit/Delete/5
-        //[HttpPost]
-        //public ActionResult Delete(int id, FormCollection collection)
-        //{
-        //    try
-        //    {
-        //        // TODO: Add delete logic here
-
-        //        return RedirectToAction("Index");
-        //    }
-        //    catch
-        //    {
-        //        return View();
-        //    }
-        //}
     }
 }

@@ -70,6 +70,7 @@ namespace MvcFeeManage.Areas.Auth.Controllers
                 tblreceptionist.image = Help.uploadfile(file);
                 db.tblreceptionists.Add(tblreceptionist);
                 db.SaveChanges();
+                TempData["Success"] = "Saved Successfully";
                 return RedirectToAction("Index");
             }
 
@@ -117,6 +118,7 @@ namespace MvcFeeManage.Areas.Auth.Controllers
                 #endregion
                 db.Entry(tblreceptionist).State = EntityState.Modified;
                 db.SaveChanges();
+                TempData["Success"] = "Updated Successfully";
                 return RedirectToAction("Index");
             }
             return View(tblreceptionist);
@@ -160,6 +162,7 @@ namespace MvcFeeManage.Areas.Auth.Controllers
             #endregion
             db.tblreceptionists.Remove(tblreceptionist);
             db.SaveChanges();
+            TempData["Success"] = "Deleted Successfully";
             return RedirectToAction("Index");
         }
 

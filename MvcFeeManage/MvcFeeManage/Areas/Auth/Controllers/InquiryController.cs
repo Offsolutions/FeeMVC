@@ -17,7 +17,7 @@ namespace MvcFeeManage.Areas.Auth.Controllers
         // GET: Auth/Inquiry
         public ActionResult Index()
         {
-            var course = db.Courses.ToList();
+            //var category = db.Categories.ToList();
             return View(db.tblinquiries.ToList());
         }
 
@@ -29,7 +29,7 @@ namespace MvcFeeManage.Areas.Auth.Controllers
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
             tblinquiry tblinquiry = db.tblinquiries.Find(id);
-            ViewBag.CourseId = new SelectList(db.Courses, "CourseId", "CourseName");
+            ViewBag.Categoryid = new SelectList(db.Categories, "Categoryid", "Name");
             if (tblinquiry == null)
             {
                 return HttpNotFound();
@@ -42,7 +42,7 @@ namespace MvcFeeManage.Areas.Auth.Controllers
         {
             tblinquiry inquiry = new tblinquiry();
             inquiry.date= System.DateTime.Now;
-            ViewBag.CourseId = new SelectList(db.Courses, "CourseId", "CourseName");
+            ViewBag.Categoryid = new SelectList(db.Categories, "Categoryid", "Name");
             return View(inquiry);
         }
 
@@ -51,14 +51,14 @@ namespace MvcFeeManage.Areas.Auth.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "Id,date,inquiryid,name,fname,contact,address,referedby,CourseId,status")] tblinquiry tblinquiry,string option,int days,string Feed,string Status2)
+        public ActionResult Create([Bind(Include = "Id,date,inquiryid,name,fname,contact,address,referedby,Categoryid,status")] tblinquiry tblinquiry,string option,int days,string Feed,string Status2)
         {
             if (ModelState.IsValid)
             {
                 tblinquiry inquiry = db.tblinquiries.FirstOrDefault();
                 if (inquiry == null)
                 {
-                    tblinquiry.inquiryid= "I_102";
+                    tblinquiry.inquiryid= "I_101";
                 }
                 else
                 {
@@ -102,7 +102,7 @@ namespace MvcFeeManage.Areas.Auth.Controllers
                 feedback.nextfollow = next;
                 db.tblfeedback.Add(feedback);
                 db.SaveChanges();
-
+                TempData["Success"] = "Saved Successfully";
                 return RedirectToAction("Index");
             }
 
@@ -117,9 +117,9 @@ namespace MvcFeeManage.Areas.Auth.Controllers
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
             tblinquiry tblinquiry = db.tblinquiries.Find(id);
-            ViewBag.CourseId = new SelectList(db.Courses, "CourseId", "CourseName");
-            tblfeedback tbfeedback = db.tblfeedback.FirstOrDefault(x => x.inquiryid == tblinquiry.inquiryid);
-            ViewBag.feedback = tbfeedback;
+            ViewBag.Categoryid = new SelectList(db.Categories, "Categoryid", "Name");
+            //tblfeedback tbfeedback = db.tblfeedback.FirstOrDefault(x => x.inquiryid == tblinquiry.inquiryid);
+            ViewBag.feedback = tblinquiry.inquiryid;
             if (tblinquiry == null)
             {
                 return HttpNotFound();
@@ -132,12 +132,13 @@ namespace MvcFeeManage.Areas.Auth.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "Id,date,inquiryid,name,fname,contact,address,referedby,CourseId,status")] tblinquiry tblinquiry)
+        public ActionResult Edit([Bind(Include = "Id,date,inquiryid,name,fname,contact,address,referedby,Categoryid")] tblinquiry tblinquiry)
         {
             if (ModelState.IsValid)
             {
                 db.Entry(tblinquiry).State = EntityState.Modified;
                 db.SaveChanges();
+                TempData["Success"] = "Updated Successfully";
                 return RedirectToAction("Index");
             }
             return View(tblinquiry);
@@ -151,7 +152,7 @@ namespace MvcFeeManage.Areas.Auth.Controllers
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
             tblinquiry tblinquiry = db.tblinquiries.Find(id);
-            ViewBag.CourseId = new SelectList(db.Courses, "CourseId", "CourseName");
+            ViewBag.Categoryid = new SelectList(db.Categories, "Categoryid", "Name");
             if (tblinquiry == null)
             {
                 return HttpNotFound();
@@ -165,9 +166,10 @@ namespace MvcFeeManage.Areas.Auth.Controllers
         public ActionResult DeleteConfirmed(int id)
         {
             tblinquiry tblinquiry = db.tblinquiries.Find(id);
-            ViewBag.CourseId = new SelectList(db.Courses, "CourseId", "CourseName");
+            ViewBag.Categoryid = new SelectList(db.Categories, "Categoryid", "Name");
             db.tblinquiries.Remove(tblinquiry);
             db.SaveChanges();
+            TempData["Success"] = "Deleted Successfully";
             return RedirectToAction("Index");
         }
 

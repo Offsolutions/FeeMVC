@@ -1,8 +1,12 @@
 ﻿@model MvcFeeManage.Areas.Auth.Models.tblinquiry
+@using MvcFeeManage.Areas.Auth.Models
 
 @{
     ViewBag.Title = "Edit";
     Layout = "~/Areas/Auth/Views/Shared/Layout.cshtml";
+    dbcontext db = new dbcontext();
+    var inquiry = ViewData["feedback"].ToString();
+    tblfeedback tblfeedback = db.tblfeedback.FirstOrDefault(x => x.inquiryid == inquiry);
 }
 <h2><b>Inquiry</b></h2>
 
@@ -23,7 +27,13 @@
                 @Html.ValidationMessageFor(model => model.date, "", new { @class = "text-danger" })
             </div>
         </div>
-
+        <div class="form-group">
+            @Html.Label("inquiryid", htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.LabelFor(model => model.inquiryid, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.inquiryid, "", new { @class = "text-danger" })
+            </div>
+        </div>
         <div class="form-group">
             @Html.Label("Name", htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
@@ -57,10 +67,10 @@
         </div>
 
         <div class="form-group">
-            @Html.Label("Course", htmlAttributes: new { @class = "control-label col-md-2" })
+            @Html.Label("Category", htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
-                @Html.DropDownList("CourseId", null, htmlAttributes: new { @class = "form-control" })
-                @Html.ValidationMessageFor(model => model.CourseId, "", new { @class = "text-danger" })
+                @Html.DropDownList("Categoryid", null, htmlAttributes: new { @class = "form-control" })
+                @Html.ValidationMessageFor(model => model.Categoryid, "", new { @class = "text-danger" })
             </div>
         </div>
 

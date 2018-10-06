@@ -24,7 +24,12 @@ namespace MvcFeeManage.Areas.Auth.Controllers
             var room = db.tblrooms.ToList();
             return View(db.tblstudentdata.ToList());
         }
-
+        public ActionResult DeactiveStudents()
+        {
+            var studentdata = db.tblstudentdata.Where(x => x.Status == false).ToList();
+            return View(studentdata);
+        }
+        
         // GET: Auth/studentdatas/Details/5
         public ActionResult Details(int? id)
         {
@@ -100,7 +105,7 @@ namespace MvcFeeManage.Areas.Auth.Controllers
                 studentcourse.Status = true;
                 db.StudentCourses.Add(studentcourse);
                 db.SaveChanges();
-
+                TempData["Success"] = "Saved Successfully";
                 return RedirectToAction("Index");
             }
 
@@ -148,6 +153,7 @@ namespace MvcFeeManage.Areas.Auth.Controllers
                 #endregion
                 db.Entry(tblstudentdata).State = EntityState.Modified;
                 db.SaveChanges();
+                TempData["Success"] = "Updated Successfully";
                 return RedirectToAction("Index");
             }
             return View(tblstudentdata);
@@ -208,6 +214,7 @@ namespace MvcFeeManage.Areas.Auth.Controllers
                 db.StudentCourses.Remove(studentcourse);
                 db.SaveChanges();
             }
+            TempData["Success"] = "Deleted Successfully";
             return RedirectToAction("Index");
         }
  

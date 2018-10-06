@@ -19,7 +19,8 @@
     <link rel="stylesheet" type="text/css" href="~/Areas/assets/lib/perfect-scrollbar/css/perfect-scrollbar.min.css" />
     <link rel="stylesheet" type="text/css" href="~/Areas/assets/lib/material-design-icons/css/material-design-iconic-font.min.css" />
     <link rel="stylesheet" type="text/css" href="~/Areas/assets/lib/datatables/css/dataTables.bootstrap.min.css" />
-
+    <link href="~/Content/alertifyjs/alertify.min.css" rel="stylesheet" />
+    <link href="~/Content/alertifyjs/themes/default.min.css" rel="stylesheet" />
     <!--[if lt IE 9]>
     <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
     <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
@@ -148,13 +149,18 @@
                                         <li>
                                             <a href="@Url.Action("Index","Courses")"><i class="fa fa-desktop"></i> Courses</a>
                                         </li>
-
+                                        <li>
+                                            <a href="@Url.Action("Index","Categories")"><i class="fa fa-desktop"></i> Categories</a>
+                                        </li>
                                     </ul>
                                 </li>
 
 
                                 <li>
                                     <a href="@Url.Action("Index","Logs")"><i class="fa fa-desktop"></i> Fees Report</a>
+                                </li>
+                                <li>
+                                    <a href="@Url.Action("DeactiveStudents", "studentdatas")"><i class="fa fa-desktop"></i>Deactive Students</a>
                                 </li>
                                 <li>
                                     <a href="@Url.Action("Index","Inquiry")"><i class="fa fa-desktop"></i> Inquiry</a>
@@ -252,6 +258,16 @@
           App.dataTables();
       });
 
+    </script>
+    <script src="~/Scripts/alertify.min.js"></script>
+    <script>
+        $(function () {
+
+            var message = '@TempData["Success"]'
+            if (message != '') {
+                alertify.success(message);
+            }
+        })
     </script>
     <script src="~/Areas/assets/tinymce/tinymce.min.js"></script>
     <script>

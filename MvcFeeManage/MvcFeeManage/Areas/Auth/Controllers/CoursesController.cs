@@ -62,6 +62,7 @@ namespace MvcFeeManage.Areas.Auth.Controllers
                 }
                 db.Courses.Add(course);
                 db.SaveChanges();
+                TempData["Success"] = "Saved Successfully";
                 return RedirectToAction("Index");
             }
 
@@ -96,6 +97,7 @@ namespace MvcFeeManage.Areas.Auth.Controllers
                 course.CourseId = coursid;
                 db.Entry(course).State = EntityState.Modified;
                 db.SaveChanges();
+                TempData["Success"] = "Updated Successfully";
                 return RedirectToAction("Index");
             }
             return View(course);
@@ -124,6 +126,7 @@ namespace MvcFeeManage.Areas.Auth.Controllers
             Course course = db.Courses.Find(id);
             db.Courses.Remove(course);
             db.SaveChanges();
+            TempData["Success"] = "Deleted Successfully";
             return RedirectToAction("Index");
         }
 

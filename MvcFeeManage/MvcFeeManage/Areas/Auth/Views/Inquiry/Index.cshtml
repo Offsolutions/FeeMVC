@@ -40,8 +40,7 @@
                     @Html.DisplayNameFor(model => model.referedby)
                 </th>
                 <th>
-                    Course
-                    @*@Html.DisplayNameFor(model => model.CourseId)*@
+                    @Html.DisplayNameFor(model => model.Categoryid)
                 </th>
                 <th>
                     @Html.DisplayNameFor(model => model.status)
@@ -73,9 +72,8 @@
                     <td>
                         @Html.DisplayFor(modelItem => item.referedby)
                     </td>
-                    <td>                    
-                        @{var coursename = db.Courses.Where(x => x.CourseId == item.CourseId).ToList();}
-                        @coursename[0].CourseName
+                    <td>         
+                        @Html.DisplayFor(modelItem => item.Category.Name)     
                     </td>
                     <td>
                         @if (item.status == true)

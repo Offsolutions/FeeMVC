@@ -72,6 +72,7 @@ namespace MvcFeeManage.Areas.Auth.Controllers
                 feemaster.TotalFees += Convert.ToInt32(student_Course.Fees);
                 db.Entry(feemaster).State = EntityState.Modified; 
                 db.SaveChanges();
+                TempData["Success"] = "Saved Successfully";
                 return RedirectToAction("Index",new { roll = rollno });
             }
 
@@ -121,6 +122,7 @@ namespace MvcFeeManage.Areas.Auth.Controllers
                 feemaster.TotalFees += Convert.ToInt32(student_Course.Fees);
                 db.Entry(feemaster).State = EntityState.Modified;
                 db.SaveChanges();
+                TempData["Success"] = "Updated Successfully";
                 return RedirectToAction("Index", new { roll = rollno });
             }
             return View(student_Course);
@@ -161,7 +163,7 @@ namespace MvcFeeManage.Areas.Auth.Controllers
             feemaster.TotalFees -= Convert.ToInt32(student_Course.Fees);
             db.Entry(feemaster).State = EntityState.Modified;
             db.SaveChanges();
-
+            TempData["Success"] = "Deleted Successfully";
             return RedirectToAction("Index", new { roll = rollno });
         }
 
