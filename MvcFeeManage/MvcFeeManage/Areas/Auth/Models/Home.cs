@@ -93,6 +93,15 @@ namespace MvcFeeManage.Areas.Auth.Models
         ICSE,
         Other
     }
+    public enum InquiryType
+    {
+       Days
+    }
+    public enum Status
+    {
+        Interested,
+        NotInterested
+    }
     public enum type
     {
         AC,
@@ -267,6 +276,7 @@ namespace MvcFeeManage.Areas.Auth.Models
         public DateTime date { get; set; }
         [AllowHtml]
         public string inquiryid { get; set; }
+        [AllowHtml]
         [Display(Name = "Feedback")]
         public string feedback { get; set; }
         [Display(Name = " ")]

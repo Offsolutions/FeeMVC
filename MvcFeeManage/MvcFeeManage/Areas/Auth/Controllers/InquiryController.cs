@@ -51,7 +51,7 @@ namespace MvcFeeManage.Areas.Auth.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "Id,date,inquiryid,name,fname,contact,address,referedby,Categoryid,status")] tblinquiry tblinquiry,string option,int days,string Feed,string Status2)
+        public ActionResult Create([Bind(Include = "Id,date,inquiryid,name,fname,contact,address,referedby,Categoryid,status")] tblinquiry tblinquiry,[Bind(Include ="Id,date,inquiryid,feedback,days,type,nexfollow,status,loginid")] tblfeedback tblfeedback)
         {
             if (ModelState.IsValid)
             {
@@ -71,36 +71,34 @@ namespace MvcFeeManage.Areas.Auth.Controllers
                 db.tblinquiries.Add(tblinquiry);
                 db.SaveChanges();
 
-                tblfeedback feedback = new tblfeedback();
+               // tblfeedback feedback = new tblfeedback();
                 DateTime next = new DateTime();
-                if (option== "Days")
+                if (tblfeedback.type== "Days")
                 {
-                     next = System.DateTime.Now.AddDays(days);
+                     next = System.DateTime.Now.AddDays(tblfeedback.days);
                     //    System.DateTime.Now.AddDays(Convert.ToInt32(days)).ToString("MM/dd/yyyy");
                 }
-                else if (option == "Month")
-                {
-                    next = System.DateTime.Now.AddMonths(days);
+                //else if (option == "Month")
+                //{
+                //    next = System.DateTime.Now.AddMonths(days);
 
-                }
-                else if (option == "Year")
-                {
-                    next = System.DateTime.Now.AddYears(days);
-                }
+                //}
+                //else if (option == "Year")
+                //{
+                //    next = System.DateTime.Now.AddYears(days);
+                //}
                 else
                 {
                     next = System.DateTime.Now;
                 }
-              
-                feedback.date = tblinquiry.date;
-                feedback.inquiryid = tblinquiry.inquiryid;
-                feedback.loginid= Session["User"].ToString();
-                feedback.status = Status2;
-                feedback.type = option;
-                feedback.days = days;
-                feedback.feedback = Feed;
-                feedback.nextfollow = next;
-                db.tblfeedback.Add(feedback);
+
+                tblfeedback.date = tblinquiry.date;
+                tblfeedback.inquiryid = tblinquiry.inquiryid;
+                tblfeedback.loginid= Session["User"].ToString();
+                tblfeedback.status = "Active";
+
+                tblfeedback.nextfollow = next;
+                db.tblfeedback.Add(tblfeedback);
                 db.SaveChanges();
                 TempData["Success"] = "Saved Successfully";
                 return RedirectToAction("Index");
@@ -132,11 +130,28 @@ namespace MvcFeeManage.Areas.Auth.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "Id,date,inquiryid,name,fname,contact,address,referedby,Categoryid")] tblinquiry tblinquiry)
+        public ActionResult Edit([Bind(Include = "Id,date,inquiryid,name,fname,contact,address,referedby,Categoryid")] tblinquiry tblinquiry,[Bind(Include = "Id,date,inquiryid,feedback,days,type,nexfollow,status,loginid")] tblfeedback tblfeedback)
         {
             if (ModelState.IsValid)
             {
                 db.Entry(tblinquiry).State = EntityState.Modified;
+                db.SaveChanges();
+                DateTime next = new DateTime();
+                if (tblfeedback.type == "Days")
+                {
+                    next = System.DateTime.Now.AddDays(tblfeedback.days);
+                  
+                }
+               
+                else
+                {
+                    next = System.DateTime.Now;
+                }
+                tblfeedback.date = tblinquiry.date;
+                tblfeedback.inquiryid = tblinquiry.inquiryid;
+                tblfeedback.loginid = Session["User"].ToString();
+                tblfeedback.nextfollow = next;
+                db.Entry(tblfeedback).State = EntityState.Modified;
                 db.SaveChanges();
                 TempData["Success"] = "Updated Successfully";
                 return RedirectToAction("Index");

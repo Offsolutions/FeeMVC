@@ -324,4 +324,3 @@ D:\WebSites\Official solutions\FeeMVC\MvcFeeManage\MvcFeeManage\bin\Microsoft.Ow
 D:\WebSites\Official solutions\FeeMVC\MvcFeeManage\MvcFeeManage\bin\Microsoft.Owin.Security.MicrosoftAccount.xml
 D:\WebSites\Official solutions\FeeMVC\MvcFeeManage\MvcFeeManage\obj\Debug\MvcFeeManage.dll
 D:\WebSites\Official solutions\FeeMVC\MvcFeeManage\MvcFeeManage\obj\Debug\MvcFeeManage.pdb
-D:\WebSites\Official solutions\FeeMVC\MvcFeeManage\MvcFeeManage\obj\Debug\MvcFeeManage.csprojResolveAssemblyReference.cache

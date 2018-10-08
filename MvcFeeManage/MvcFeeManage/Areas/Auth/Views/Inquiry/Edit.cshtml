@@ -6,7 +6,7 @@
     Layout = "~/Areas/Auth/Views/Shared/Layout.cshtml";
     dbcontext db = new dbcontext();
     var inquiry = ViewData["feedback"].ToString();
-    tblfeedback tblfeedback = db.tblfeedback.FirstOrDefault(x => x.inquiryid == inquiry);
+    tblfeedback tblfeedback = db.tblfeedback.OrderByDescending(x=>x.Id).FirstOrDefault(x => x.inquiryid == inquiry);
 }
 <h2><b>Inquiry</b></h2>
 
@@ -19,6 +19,7 @@
         <hr />
         @Html.ValidationSummary(true, "", new { @class = "text-danger" })
         @Html.HiddenFor(model => model.Id)
+        @Html.HiddenFor(model => tblfeedback.Id)
 
         <div class="form-group">
             @Html.Label("Date", htmlAttributes: new { @class = "control-label col-md-2" })
@@ -30,7 +31,7 @@
         <div class="form-group">
             @Html.Label("inquiryid", htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
-                @Html.LabelFor(model => model.inquiryid, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.EditorFor(model => model.inquiryid, new { htmlAttributes = new { @class = "form-control" } })
                 @Html.ValidationMessageFor(model => model.inquiryid, "", new { @class = "text-danger" })
             </div>
         </div>
@@ -77,15 +78,20 @@
         <div class="form-group">
             @Html.Label("Follow Up", htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-5">
-                <select id="Dropdown" name="option" class="form-control">
-                    <option value="Select">--Select--</option>
-                    <option value="Days">Days</option>
-                    <option value="Month">Month</option>
-                    <option value="Year">Year</option>
-                </select>
+                @Html.DropDownListFor(model => tblfeedback.type,
+                    new SelectList(Enum.GetValues(typeof(MvcFeeManage.Areas.Auth.Models.InquiryType))),
+                    "Select Type",
+                    new { @class = "form-control" })
             </div>
             <div class="col-md-5">
-                <input id="days" type="text" name="days" class="form-control" />
+               
+                <div class="form-group">
+                    @Html.Label("Days", htmlAttributes: new { @class = "control-label col-md-2" })
+                    <div class="col-md-10">
+                        @Html.EditorFor(model => tblfeedback.days, new { htmlAttributes = new { @class = "form-control" } })
+                        @Html.ValidationMessageFor(model => tblfeedback.days, "", new { @class = "text-danger" })
+                    </div>
+                </div>
             </div>
         </div>
 
@@ -100,18 +106,18 @@
         <div class="form-group">
             @Html.Label("Feed Back", htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
-                <textarea id="TextArea1" rows="2" cols="20" name="Feed" class="form-control" ></textarea>
+                @Html.EditorFor(model => tblfeedback.feedback, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => tblfeedback.feedback, "", new { @class = "text-danger" })
             </div>
         </div>
 
         <div class="form-group">
             @Html.Label("Status", htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
-                <select id="Dropdown" name="value" class="form-control">
-                    <option value="Select">--Select--</option>
-                    <option value="Interested">Interested</option>
-                    <option value="NotInterested">Not Interested</option>
-                </select>
+                @Html.DropDownListFor(model => tblfeedback.type,
+                    new SelectList(Enum.GetValues(typeof(MvcFeeManage.Areas.Auth.Models.Status))),
+                    "Select Status",
+                    new { @class = "form-control" })
             </div>
         </div>
 
