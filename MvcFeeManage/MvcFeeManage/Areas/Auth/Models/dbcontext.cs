@@ -36,5 +36,7 @@ namespace MvcFeeManage.Areas.Auth.Models
         public System.Data.Entity.DbSet<MvcFeeManage.Areas.Auth.Models.tblfill> tblfills { get; set; }
 
         public System.Data.Entity.DbSet<MvcFeeManage.Areas.Auth.Models.Category> Categories { get; set; }
+
+        public System.Data.Entity.DbSet<MvcFeeManage.Areas.Auth.Models.tblsms> tblsms { get; set; }
     }
 }

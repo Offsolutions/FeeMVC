@@ -68,6 +68,7 @@ namespace MvcFeeManage.Areas.Auth.Controllers
                     tblreceptionist.rid = (Convert.ToInt32(ab) + 1).ToString();
                 }
                 tblreceptionist.image = Help.uploadfile(file);
+                tblreceptionist.password = Help.DecryptData(tblreceptionist.password);
                 db.tblreceptionists.Add(tblreceptionist);
                 db.SaveChanges();
                 TempData["Success"] = "Saved Successfully";
@@ -86,6 +87,7 @@ namespace MvcFeeManage.Areas.Auth.Controllers
             }
             tblreceptionist tblreceptionist = db.tblreceptionists.Find(id);
             img = tblreceptionist.image;
+
             if (tblreceptionist == null)
             {
                 return HttpNotFound();
@@ -180,10 +182,11 @@ namespace MvcFeeManage.Areas.Auth.Controllers
         }
 
         [HttpPost]
-        public ActionResult Login(tblreceptionist model, string returnUrl)
+        public ActionResult Login(tblreceptionist model, string returnUrl, Helper Help)
         {
             dbcontext db = new dbcontext();
-            var dataItem = db.tblreceptionists.Where(x => x.login == model.login && x.password == model.password).First();
+            var passw = Help.EncryptData(model.password);
+            var dataItem = db.tblreceptionists.Where(x => x.login == model.login && x.password == passw).FirstOrDefault();
             if (dataItem != null)
             {
                 FormsAuthentication.SetAuthCookie(dataItem.login, false);

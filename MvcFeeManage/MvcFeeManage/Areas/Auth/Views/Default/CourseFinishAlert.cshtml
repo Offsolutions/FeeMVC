@@ -66,11 +66,11 @@
                     </td>
                     <td>
                         @{  
-                            DateTime dt = System.DateTime.Now;
-                            DateTime enddate = Convert.ToDateTime(item.enddate);
-                            TimeSpan duration = enddate > dt ? enddate - dt : dt - enddate;
-                            var left = duration.ToString();
-                            //var left =(System.DateTime.Now - item.enddate);
+                            //DateTime dt = System.DateTime.Now;
+                            //DateTime enddate = Convert.ToDateTime(item.enddate);
+                            //TimeSpan duration = enddate > dt ? enddate - dt : dt - enddate;
+                            //var left = duration.ToString();
+                            var left = (System.DateTime.Now - item.enddate);
                         }
                             @left
                     </td>

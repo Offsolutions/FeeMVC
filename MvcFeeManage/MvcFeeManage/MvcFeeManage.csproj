@@ -80,6 +80,8 @@
     <Reference Include="System" />
     <Reference Include="System.Data" />
     <Reference Include="System.Drawing" />
+    <Reference Include="System.Runtime.Serialization" />
+    <Reference Include="System.Security" />
     <Reference Include="System.Web.DynamicData" />
     <Reference Include="System.Web.Entity" />
     <Reference Include="System.Web.ApplicationServices" />
@@ -207,6 +209,7 @@
     <Compile Include="Areas\Auth\Controllers\LogsController.cs" />
     <Compile Include="Areas\Auth\Controllers\ReceiptController.cs" />
     <Compile Include="Areas\Auth\Controllers\roomsController.cs" />
+    <Compile Include="Areas\Auth\Controllers\SMSController.cs" />
     <Compile Include="Areas\Auth\Controllers\studentdatasController.cs" />
     <Compile Include="Areas\Auth\Models\dbcontext.cs" />
     <Compile Include="Areas\Auth\Models\Helper.cs" />
@@ -522,6 +525,11 @@
     <Content Include="Areas\Auth\Views\Default\CourseFinishAlert.cshtml" />
     <Content Include="Areas\Auth\Views\Default\FeeAlert.cshtml" />
     <Content Include="Areas\Auth\Views\studentdatas\DeactiveStudents.cshtml" />
+    <Content Include="Areas\Auth\Views\SMS\Create.cshtml" />
+    <Content Include="Areas\Auth\Views\SMS\Delete.cshtml" />
+    <Content Include="Areas\Auth\Views\SMS\Details.cshtml" />
+    <Content Include="Areas\Auth\Views\SMS\Edit.cshtml" />
+    <Content Include="Areas\Auth\Views\SMS\Index.cshtml" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="Scripts\jquery-1.10.2.js" />
     <Content Include="Scripts\jquery-1.10.2.min.js" />
@@ -573,6 +581,7 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
+    <Folder Include="UploadedFiles\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff" />

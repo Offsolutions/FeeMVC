@@ -359,4 +359,21 @@ namespace MvcFeeManage.Areas.Auth.Models
         public string Name { get; set; }
         public virtual ICollection<tblinquiry> tblinquiry { get; set; }
     }
+    public class tblsms
+    {
+        [Key]
+        public int id { get; set; }
+        [Display(Name = "User Name")]
+        public string Username { get; set; }
+        [Display(Name = "Sender Id")]
+        public string Senderid { get; set; }
+        [Display(Name = "Type")]
+        public string Type { get; set; }
+        [Display(Name = "API")]
+        public string Api { get; set; }
+        [Display(Name = "Alert No.")]
+        public string alertno { get; set; }
+        [Display(Name = "Status")]
+        public bool Status { get; set; }
+    }
 }

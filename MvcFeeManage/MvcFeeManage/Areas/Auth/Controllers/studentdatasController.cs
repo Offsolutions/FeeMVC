@@ -20,9 +20,10 @@ namespace MvcFeeManage.Areas.Auth.Controllers
        
         public ActionResult Index()
         {
-            var course = db.Courses.ToList();
-            var room = db.tblrooms.ToList();
-            return View(db.tblstudentdata.ToList());
+            //var course = db.Courses.ToList();
+            //var room = db.tblrooms.ToList();
+            var studentdata = db.tblstudentdata.Where(x => x.Status == true).ToList();
+            return View(studentdata);
         }
         public ActionResult DeactiveStudents()
         {
@@ -133,7 +134,7 @@ namespace MvcFeeManage.Areas.Auth.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "Id,name,dob,fathername,address,phone,fatherphn,language,board,qualification,coaching,institutename,type,refferedby,image,uid,Status,username,password,gender,remarks,email,discount,date")] tblstudentdata tblstudentdata, HttpPostedFileBase file, Helper Help)
+        public ActionResult Edit([Bind(Include = "Id,rollno,name,dob,fathername,address,phone,fatherphn,language,board,qualification,coaching,institutename,type,refferedby,image,uid,Status,username,password,gender,remarks,email,discount,date")] tblstudentdata tblstudentdata, HttpPostedFileBase file, Helper Help)
         {
             if (ModelState.IsValid)
             {
