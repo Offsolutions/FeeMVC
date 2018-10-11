@@ -71,8 +71,8 @@
                     @*@Html.DisplayFor(modelItem => item.Active)*@
                 </td>
                 <td>
-                        @*@Html.ActionLink("Edit", "Edit", new { id=item.Id }) |
-                        @Html.ActionLink("Details", "Details", new { id=item.Id }) |*@
+                        @* @Html.ActionLink("Details", "Details", new { id=item.Id }) |*@
+                        @Html.ActionLink("Reprint", "Invoice", new { id = item.Id }, new { @class = "label label-primary" }) |
                         @Html.ActionLink("Delete", "Delete", new { id=item.Id }, new { @class = "label label-danger" })
                     </td>
             </tr>

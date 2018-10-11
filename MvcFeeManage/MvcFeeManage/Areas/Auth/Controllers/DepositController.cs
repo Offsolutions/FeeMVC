@@ -20,7 +20,7 @@ namespace MvcFeeManage.Areas.Auth.Controllers
         {
             TempData["roll"] = roll;
             Session["roll"] = roll;
-            var recp = db.Recipt_Details.Where(x=>x.RollNo==roll).ToList();
+            var recp = db.Recipt_Details.Where(x => x.RollNo == roll).ToList();
             return View(recp);
         }
 
@@ -38,7 +38,7 @@ namespace MvcFeeManage.Areas.Auth.Controllers
             rollno = roll;
             StudentCourse course = db.StudentCourses.Where(x => x.RollNo == roll && x.Status == true).FirstOrDefault();
             var courses = db.Courses.Where(x => x.CourseId == course.CourseId);
-     
+
             ViewBag.CourseId = new SelectList(courses, "CourseId", "CourseName");
             ViewBag.RollNo = roll;
             Recipt_Details receiptd = db.Recipt_Details.FirstOrDefault();
@@ -47,7 +47,7 @@ namespace MvcFeeManage.Areas.Auth.Controllers
                 var receip = db.tblReceipt.FirstOrDefault();
                 if (receip == null)
                 {
-                        ViewBag.Receipt = 1;
+                    ViewBag.Receipt = 1;
                 }
                 else
                 {
@@ -68,7 +68,7 @@ namespace MvcFeeManage.Areas.Auth.Controllers
         // POST: Auth/Deposit/Create
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create(int Amount, int Discount, int CourseId, DateTime Alert, DateTime date,Recipt_Details receiptdetail)
+        public ActionResult Create(int Amount, int Discount, int CourseId, DateTime Alert, DateTime date, Recipt_Details receiptdetail)
         {
             try
             {
@@ -153,9 +153,15 @@ namespace MvcFeeManage.Areas.Auth.Controllers
             TempData["Success"] = "Deleted Successfully";
             return RedirectToAction("Index", new { roll = receiptdetail.RollNo });
         }
+        //public ActionResult invoice(int id)
+        //{
+        //    return View();
+        //}
         public ActionResult invoice(int id)
         {
-            return View();
+            Recipt_Details receiptdetail = db.Recipt_Details.FirstOrDefault(x => x.Id == id);
+            ViewBag.courseid = receiptdetail.CourseId;
+            return View(receiptdetail);
         }
     }
 }

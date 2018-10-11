@@ -376,4 +376,21 @@ namespace MvcFeeManage.Areas.Auth.Models
         [Display(Name = "Status")]
         public bool Status { get; set; }
     }
+    public class tbldetail
+    {
+        [Key]
+        public int id { get; set; }
+        [Display(Name = "Institute Name")]
+        public string name { get; set; }
+        [Display(Name = "Contact")]
+        public string phone { get; set; }
+        [Display(Name = "Email")]
+        [DataType(DataType.EmailAddress, ErrorMessage = "Please enter a valid email address.")]
+        [RegularExpression("^([a-zA-Z0-9_\\-\\.]+)@((\\[[0-9]{1,3}\\.[0-9]{1,3}\\.[0-9]{1,3}\\.)|(([a-zA-Z0-9\\-]+\\.)+))([a-zA-Z]{2,4}|[0-9]{1,3})(\\]?)$", ErrorMessage = "You must provide a valid email address.")]
+        public string email { get; set; }
+        [Display(Name = "Address")]
+        public string address { get; set; }
+        [Display(Name = "Logo")]
+        public string logo { get; set; }
+    }   
 }
