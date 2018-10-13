@@ -325,3 +325,4 @@ G:\new github\FeeMVC\MvcFeeManage\MvcFeeManage\bin\Microsoft.Owin.Security.Micro
 G:\new github\FeeMVC\MvcFeeManage\MvcFeeManage\obj\Debug\MvcFeeManage.dll
 G:\new github\FeeMVC\MvcFeeManage\MvcFeeManage\obj\Debug\MvcFeeManage.pdb
 G:\new github\FeeMVC\MvcFeeManage\MvcFeeManage\obj\Debug\MvcFeeManage.csprojResolveAssemblyReference.cache
+D:\WebSites\Official solutions\FeeMVC\MvcFeeManage\MvcFeeManage\obj\Debug\MvcFeeManage.csprojResolveAssemblyReference.cache
