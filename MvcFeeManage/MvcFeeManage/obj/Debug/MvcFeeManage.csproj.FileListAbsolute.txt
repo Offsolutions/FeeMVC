@@ -324,3 +324,8 @@ G:\new github\FeeMVC\MvcFeeManage\MvcFeeManage\bin\Microsoft.Owin.Security.Twitt
 G:\new github\FeeMVC\MvcFeeManage\MvcFeeManage\bin\Microsoft.Owin.Security.MicrosoftAccount.xml
 G:\new github\FeeMVC\MvcFeeManage\MvcFeeManage\obj\Debug\MvcFeeManage.dll
 G:\new github\FeeMVC\MvcFeeManage\MvcFeeManage\obj\Debug\MvcFeeManage.pdb
+<<<<<<< HEAD
+=======
+G:\new github\FeeMVC\MvcFeeManage\MvcFeeManage\obj\Debug\MvcFeeManage.csprojResolveAssemblyReference.cache
+D:\WebSites\Official solutions\FeeMVC\MvcFeeManage\MvcFeeManage\obj\Debug\MvcFeeManage.csprojResolveAssemblyReference.cache
+>>>>>>> e16cb902bfe35311a5d36fff0fbb455c519de0f2

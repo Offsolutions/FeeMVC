@@ -18,8 +18,15 @@ namespace MvcFeeManage.Areas.Auth.Controllers
         public ActionResult CourseFinishAlert()
         {
             // var studentcourse = db.StudentCourses.Where(x => x.Status == true && x.enddate == System.DateTime.Now.AddDays(-3) || x.enddate == System.DateTime.Now.AddDays(-2) || x.enddate == System.DateTime.Now.AddDays(-1) || x.enddate == System.DateTime.Now);
+<<<<<<< HEAD
             var studentcourse = db.StudentCourses.Where(x => x.Status == true && x.enddate == System.DateTime.Now.AddDays(-3));
             return View(studentcourse);
+=======
+            var ab = System.DateTime.Now.AddDays(-3);
+            var c = Convert.ToDateTime(ab);
+            var studentcourse = db.StudentCourses.Where(x => x.Status == true && x.enddate <= c).ToList();
+            return View(db.StudentCourses.Where(x => x.Status == true && x.enddate <= c));
+>>>>>>> e16cb902bfe35311a5d36fff0fbb455c519de0f2
         }
         public ActionResult FeeAlert()
         {
