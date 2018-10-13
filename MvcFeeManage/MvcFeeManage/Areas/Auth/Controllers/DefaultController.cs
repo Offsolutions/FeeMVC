@@ -18,15 +18,13 @@ namespace MvcFeeManage.Areas.Auth.Controllers
         public ActionResult CourseFinishAlert()
         {
             // var studentcourse = db.StudentCourses.Where(x => x.Status == true && x.enddate == System.DateTime.Now.AddDays(-3) || x.enddate == System.DateTime.Now.AddDays(-2) || x.enddate == System.DateTime.Now.AddDays(-1) || x.enddate == System.DateTime.Now);
-<<<<<<< HEAD
-            var studentcourse = db.StudentCourses.Where(x => x.Status == true && x.enddate == System.DateTime.Now.AddDays(-3));
-            return View(studentcourse);
-=======
+
+            //var studentcourse = db.StudentCourses.Where(x => x.Status == true && x.enddate == System.DateTime.Now.AddDays(-3));
+            //return View(studentcourse);
             var ab = System.DateTime.Now.AddDays(-3);
             var c = Convert.ToDateTime(ab);
             var studentcourse = db.StudentCourses.Where(x => x.Status == true && x.enddate <= c).ToList();
             return View(db.StudentCourses.Where(x => x.Status == true && x.enddate <= c));
->>>>>>> e16cb902bfe35311a5d36fff0fbb455c519de0f2
         }
         public ActionResult FeeAlert()
         {
@@ -37,10 +35,11 @@ namespace MvcFeeManage.Areas.Auth.Controllers
             return View(db.StudentCourses.Where(x=>x.RollNo==0).ToList());
         }
         [HttpPost]
-        public ActionResult Search(int search)
+        public ActionResult Search(string search)
         {
+            int roll = Convert.ToInt32(search);
             List<StudentCourse> Studentcourse = new List<StudentCourse>();
-            Studentcourse = db.StudentCourses.Where(x => x.RollNo == search).ToList();
+            Studentcourse = db.StudentCourses.Where(x => x.RollNo == roll).ToList();
             ViewBag.RollNo = search;
             return View(Studentcourse);
         }
