@@ -207,6 +207,7 @@
     <Compile Include="Areas\Auth\Controllers\ExamRegController.cs" />
     <Compile Include="Areas\Auth\Controllers\InquiryController.cs" />
     <Compile Include="Areas\Auth\Controllers\LogsController.cs" />
+    <Compile Include="Areas\Auth\Controllers\OurDetailController.cs" />
     <Compile Include="Areas\Auth\Controllers\ReceiptController.cs" />
     <Compile Include="Areas\Auth\Controllers\roomsController.cs" />
     <Compile Include="Areas\Auth\Controllers\SMSController.cs" />
@@ -530,6 +531,11 @@
     <Content Include="Areas\Auth\Views\SMS\Details.cshtml" />
     <Content Include="Areas\Auth\Views\SMS\Edit.cshtml" />
     <Content Include="Areas\Auth\Views\SMS\Index.cshtml" />
+    <Content Include="Areas\Auth\Views\OurDetail\Create.cshtml" />
+    <Content Include="Areas\Auth\Views\OurDetail\Delete.cshtml" />
+    <Content Include="Areas\Auth\Views\OurDetail\Details.cshtml" />
+    <Content Include="Areas\Auth\Views\OurDetail\Edit.cshtml" />
+    <Content Include="Areas\Auth\Views\OurDetail\Index.cshtml" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="Scripts\jquery-1.10.2.js" />
     <Content Include="Scripts\jquery-1.10.2.min.js" />

@@ -1,46 +1,55 @@
-﻿
+﻿@model MvcFeeManage.Areas.Auth.Models.Recipt_Details
+@using MvcFeeManage.Areas.Auth.Models;
 @{
     ViewBag.Title = "invoice";
     Layout = "~/Areas/Auth/Views/Shared/Profile.cshtml";
+    dbcontext db = new dbcontext();
+    tbldetail tbldetail = db.tbldetails.FirstOrDefault();
+    int roll = Convert.ToInt32(Session["roll"].ToString());
+    tblstudentdata tblstudent = db.tblstudentdata.FirstOrDefault(x => x.rollno == roll);
+    var courseid = ViewData["courseid"].ToString();
+    int cid = Convert.ToInt32(courseid);
+    Course course = db.Courses.FirstOrDefault(a => a.CourseId == cid);
+    Fees_Master feemaster = db.Fees_Master.FirstOrDefault(x => x.RollNo == roll);
+
 }
 
 <div class="col-xs-12">
     <div class="invoice-title">
-        <h2>Invoice</h2><h3 class="pull-right">Order # 12345</h3>
+        <h2>Invoice</h2><h3 class="pull-right">Recipt No. @Model.ReciptNo</h3>
     </div>
     <hr>
     <div class="row">
         <div class="col-xs-6">
             <address>
                 <strong>Billed To:</strong><br>
-                John Smith<br>
-                1234 Main<br>
-                Apt. 4B<br>
-                Springfield, ST 54321
+                Name: @tblstudent.name <br />
+                S.O/D.O/W.O : @tblstudent.fathername<br />
+                Phone No. : @tblstudent.phone<br />
+                City/Village : @tblstudent.address
             </address>
         </div>
         <div class="col-xs-6 text-right">
             <address>
-                <strong>Billed from:</strong><br>
-                Jane Smith<br>
-                1234 Main<br>
-                Apt. 4B<br>
-                Springfield, ST 54321
+                <strong>Billed from:</strong><br />
+                @tbldetail.name<br />
+                @tbldetail.address<br />
+                @tbldetail.phone<br />
+                @tbldetail.email
             </address>
         </div>
     </div>
     <div class="row">
         <div class="col-xs-6">
             <address>
-                <strong>Payment Method:</strong><br>
-                Visa ending **** 4242<br>
-                jsmith@email.com
+                <strong>Payment Method:</strong>
+                Cash
             </address>
         </div>
         <div class="col-xs-6 text-right">
             <address>
-                <strong>Order Date:</strong><br>
-                March 7, 2014<br><br>
+                <strong>Date:</strong>
+                @Convert.ToDateTime(Model.Date).ToString("dd/MM/yyyy")<br><br>
             </address>
         </div>
     </div>
@@ -51,7 +60,7 @@
     <div class="col-md-12">
         <div class="panel panel-default">
             <div class="panel-heading">
-                <h3 class="panel-title"><strong>Order summary</strong></h3>
+                <h3 class="panel-title"><strong>Installments Details</strong></h3>
             </div>
             <div class="panel-body">
                 <div class="table-responsive">
@@ -67,40 +76,37 @@
                         <tbody>
                             <!-- foreach ($order->lineItems as $line) or some such thing here -->
                             <tr>
-                                <td>BS-200</td>
-                                <td class="text-center">$10.99</td>
-                                <td class="text-center">1</td>
-                                <td class="text-right">$10.99</td>
+                                <td>@course.CourseName</td>
+                                <td class="text-center">@Model.Amount</td>
+                                @{ int total = feemaster.TotalFees - feemaster.PaidFees;}
+                                <td class="text-center">@total</td>
+                                <td class="text-right">@feemaster.PaidFees</td>
                             </tr>
                             <tr>
-                                <td>BS-400</td>
-                                <td class="text-center">$20.00</td>
-                                <td class="text-center">3</td>
-                                <td class="text-right">$60.00</td>
-                            </tr>
-                            <tr>
-                                <td>BS-1000</td>
-                                <td class="text-center">$600.00</td>
-                                <td class="text-center">1</td>
-                                <td class="text-right">$600.00</td>
-                            </tr>
-                            <tr>
-                                <td class="thick-line"></td>
-                                <td class="thick-line"></td>
-                                <td class="thick-line text-center"><strong>Subtotal</strong></td>
-                                <td class="thick-line text-right">$670.99</td>
-                            </tr>
-                            <tr>
+
+                                <td class="no-line text-center"><strong>In Words :</strong>FIVE THOUSAND</td>
                                 <td class="no-line"></td>
                                 <td class="no-line"></td>
-                                <td class="no-line text-center"><strong>Shipping</strong></td>
-                                <td class="no-line text-right">$15</td>
+                                <td class="no-line"></td>
+                                @*<td class="no-line text-right"></td>
+                                    <td class="no-line"></td>
+                                    <td class="no-line"></td>*@
                             </tr>
                             <tr>
-                                <td class="no-line"></td>
-                                <td class="no-line"></td>
-                                <td class="no-line text-center"><strong>Total</strong></td>
-                                <td class="no-line text-right">$685.99</td>
+                              
+                                <td class="no-line">
+                                    <h3 style="margin:0px"><strong>Terms & Conditions</strong></h3>
+                                    <ul style="padding: 0px; margin: 0px; list-style: none;font-size:13px">
+                                        <li>1. Fee will not be refundable at any cost.</li>
+                                        <li>2. Maintain the discipline in class.</li>
+                                        <li>3. Use of mobile phone is prohibited in the class. </li>
+                                        <li>4. All the dues must be cleared within 15 days of admission.</li>
+
+                                    </ul>
+                                </td>
+                                <td class="no-line"><strong>For Kohli Star</strong></td>
+                                <td class="no-line text-center"><strong>Candidate Signature</strong></td>
+                                <td class="no-line text-right"><strong>Auth Signatory</strong></td>
                             </tr>
                         </tbody>
                     </table>
@@ -108,5 +114,5 @@
             </div>
         </div>
     </div>
-    </div>
+</div>
 
