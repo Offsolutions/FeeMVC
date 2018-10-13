@@ -536,6 +536,7 @@
     <Content Include="Areas\Auth\Views\OurDetail\Details.cshtml" />
     <Content Include="Areas\Auth\Views\OurDetail\Edit.cshtml" />
     <Content Include="Areas\Auth\Views\OurDetail\Index.cshtml" />
+    <Content Include="Areas\Auth\Views\Default\Search.cshtml" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="Scripts\jquery-1.10.2.js" />
     <Content Include="Scripts\jquery-1.10.2.min.js" />

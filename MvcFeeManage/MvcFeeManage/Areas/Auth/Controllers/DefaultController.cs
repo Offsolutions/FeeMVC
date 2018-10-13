@@ -17,13 +17,25 @@ namespace MvcFeeManage.Areas.Auth.Controllers
         }
         public ActionResult CourseFinishAlert()
         {
-           // var studentcourse = db.StudentCourses.Where(x => x.Status == true && x.enddate == System.DateTime.Now.AddDays(-3) || x.enddate == System.DateTime.Now.AddDays(-2) || x.enddate == System.DateTime.Now.AddDays(-1) || x.enddate == System.DateTime.Now);
-           var studentcourse = db.StudentCourses.Where(x => x.Status == true && x.enddate == System.DateTime.Now.AddDays(-3));
+            // var studentcourse = db.StudentCourses.Where(x => x.Status == true && x.enddate == System.DateTime.Now.AddDays(-3) || x.enddate == System.DateTime.Now.AddDays(-2) || x.enddate == System.DateTime.Now.AddDays(-1) || x.enddate == System.DateTime.Now);
+            var studentcourse = db.StudentCourses.Where(x => x.Status == true && x.enddate == System.DateTime.Now.AddDays(-3));
             return View(studentcourse);
         }
         public ActionResult FeeAlert()
         {
             return View(db.Fees_Master.ToList());
+        }
+        public ActionResult Search()
+        {
+            return View(db.StudentCourses.Where(x=>x.RollNo==0).ToList());
+        }
+        [HttpPost]
+        public ActionResult Search(int search)
+        {
+            List<StudentCourse> Studentcourse = new List<StudentCourse>();
+            Studentcourse = db.StudentCourses.Where(x => x.RollNo == search).ToList();
+            ViewBag.RollNo = search;
+            return View(Studentcourse);
         }
     }
 }
