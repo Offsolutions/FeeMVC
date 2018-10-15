@@ -79,6 +79,7 @@ namespace MvcFeeManage.Areas.Auth.Controllers
                 }
                 tblstudentdata.uid = User.Identity.Name;
                 tblstudentdata.image = Help.uploadfile(file);
+                tblstudentdata.password = Help.DecryptData(tblstudentdata.password);
                 db.tblstudentdata.Add(tblstudentdata);
                 db.SaveChanges();
 
@@ -116,11 +117,13 @@ namespace MvcFeeManage.Areas.Auth.Controllers
         // GET: Auth/studentdatas/Edit/5
         public ActionResult Edit(int? id)
         {
+            Helper help = new Helper();
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
             tblstudentdata tblstudentdata = db.tblstudentdata.Find(id);
+            tblstudentdata.password = help.EncryptData(tblstudentdata.password);
             img = tblstudentdata.image;
             if (tblstudentdata == null)
             {
@@ -139,6 +142,7 @@ namespace MvcFeeManage.Areas.Auth.Controllers
             if (ModelState.IsValid)
             {
                 tblstudentdata.image = file != null ? Help.uploadfile(file) : img;
+                tblstudentdata.password = Help.DecryptData(tblstudentdata.password);
                 #region delete file
                 string fullPath = Request.MapPath("~/UploadedFiles/" + img);
                 if (img == tblstudentdata.image)
@@ -163,11 +167,13 @@ namespace MvcFeeManage.Areas.Auth.Controllers
         // GET: Auth/studentdatas/Delete/5
         public ActionResult Delete(int? id)
         {
+            Helper help = new Helper();
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
             tblstudentdata tblstudentdata = db.tblstudentdata.Find(id);
+            tblstudentdata.password = help.EncryptData(tblstudentdata.password);
             ViewBag.CourseId = new SelectList(db.Courses, "CourseId", "CourseName");
             if (tblstudentdata == null)
             {
@@ -181,10 +187,12 @@ namespace MvcFeeManage.Areas.Auth.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(int id)
         {
+            Helper help = new Helper();
             tblstudentdata tblstudentdata = db.tblstudentdata.Find(id);
             int roll = tblstudentdata.rollno;
             ViewBag.CourseId = new SelectList(db.Courses, "CourseId", "CourseName");
             img = tblstudentdata.image;
+            tblstudentdata.password = help.EncryptData(tblstudentdata.password);
             #region delete file
             string fullPath = Request.MapPath("~/UploadedFiles/" + img);
             if (img == tblstudentdata.image)
