@@ -5,7 +5,6 @@
     ViewBag.Title = "CourseFinishAlert";
     Layout = "~/Areas/Auth/Views/Shared/Layout.cshtml";
     dbcontext db = new dbcontext();
-  //  var cour = db.StudentCourses.Where(x => x.RollNo ==rollno).Where(x => x.Status == true).GroupJoin(db.Courses, c => c.CourseId, x => x.CourseId,
 }
 
 <h2><b>CourseFinishAlert</b></h2>
@@ -66,12 +65,13 @@
                     </td>
                     <td>
                         @{  
-                            //DateTime dt = System.DateTime.Now;
-                            //DateTime enddate = Convert.ToDateTime(item.enddate);
-                            //TimeSpan duration = enddate > dt ? enddate - dt : dt - enddate;
-                            //var left = duration.ToString();
-                            var left = (System.DateTime.Now - item.enddate);
-                        }
+                                //int DaysBetween(System.DateTime.Now d1, item.enddate d2) {
+                                //    TimeSpan span = d2.Subtract(d1);
+                                //    int left = (int)span.TotalDays;
+                                //  return (int)span.TotalDays;
+                                //  Math.Abs(span.TotalDays)
+                                var left =(System.DateTime.Now - item.enddate);
+                            }
                             @left
                     </td>
                     <td>

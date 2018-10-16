@@ -79,7 +79,10 @@ namespace MvcFeeManage.Areas.Auth.Controllers
                 }
                 tblstudentdata.uid = User.Identity.Name;
                 tblstudentdata.image = Help.uploadfile(file);
-                tblstudentdata.password = Help.DecryptData(tblstudentdata.password);
+                if (tblstudentdata.password != null)
+                {
+                    tblstudentdata.password = Help.EncryptData(tblstudentdata.password);
+                }
                 db.tblstudentdata.Add(tblstudentdata);
                 db.SaveChanges();
 
@@ -91,7 +94,7 @@ namespace MvcFeeManage.Areas.Auth.Controllers
                 //feemaster.CourseId = CourseId;
                 feemaster.AlertDate = System.DateTime.Now.AddDays(2);
                 feemaster.discount = tblstudentdata.discount;
-                feemaster.Status = true;
+                feemaster.Status = tblstudentdata.Status;
                 feemaster.TotalFees = Convert.ToInt32(addmission);
                 db.Fees_Master.Add(feemaster);
                 db.SaveChanges();
@@ -104,7 +107,7 @@ namespace MvcFeeManage.Areas.Auth.Controllers
                 studentcourse.enddate = enddate;
                 studentcourse.Fees = addmission;
                 studentcourse.Uid = Session["User"].ToString();
-                studentcourse.Status = true;
+                studentcourse.Status = tblstudentdata.Status;
                 db.StudentCourses.Add(studentcourse);
                 db.SaveChanges();
                 TempData["Success"] = "Saved Successfully";
@@ -123,7 +126,10 @@ namespace MvcFeeManage.Areas.Auth.Controllers
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
             tblstudentdata tblstudentdata = db.tblstudentdata.Find(id);
-            tblstudentdata.password = help.EncryptData(tblstudentdata.password);
+            if (tblstudentdata.password != null)
+            {
+                tblstudentdata.password = help.DecryptData(tblstudentdata.password);
+            }
             img = tblstudentdata.image;
             if (tblstudentdata == null)
             {
@@ -142,7 +148,10 @@ namespace MvcFeeManage.Areas.Auth.Controllers
             if (ModelState.IsValid)
             {
                 tblstudentdata.image = file != null ? Help.uploadfile(file) : img;
-                tblstudentdata.password = Help.DecryptData(tblstudentdata.password);
+                if (tblstudentdata.password != null)
+                {
+                    tblstudentdata.password = Help.EncryptData(tblstudentdata.password);
+                }
                 #region delete file
                 string fullPath = Request.MapPath("~/UploadedFiles/" + img);
                 if (img == tblstudentdata.image)
@@ -158,6 +167,17 @@ namespace MvcFeeManage.Areas.Auth.Controllers
                 #endregion
                 db.Entry(tblstudentdata).State = EntityState.Modified;
                 db.SaveChanges();
+             
+                    Fees_Master feemaster = db.Fees_Master.FirstOrDefault(x => x.RollNo == tblstudentdata.rollno);
+                   feemaster.Status = tblstudentdata.Status;
+                    db.Entry(feemaster).State = EntityState.Modified;
+                    db.SaveChanges();
+
+                    StudentCourse studentcourse = db.StudentCourses.FirstOrDefault(x => x.RollNo == tblstudentdata.rollno);
+                    studentcourse.Status = tblstudentdata.Status;
+                    db.Entry(studentcourse).State = EntityState.Modified;
+                    db.SaveChanges();
+
                 TempData["Success"] = "Updated Successfully";
                 return RedirectToAction("Index");
             }
@@ -173,7 +193,10 @@ namespace MvcFeeManage.Areas.Auth.Controllers
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
             tblstudentdata tblstudentdata = db.tblstudentdata.Find(id);
-            tblstudentdata.password = help.EncryptData(tblstudentdata.password);
+            if (tblstudentdata.password != null)
+            {
+                tblstudentdata.password = help.DecryptData(tblstudentdata.password);
+            }
             ViewBag.CourseId = new SelectList(db.Courses, "CourseId", "CourseName");
             if (tblstudentdata == null)
             {
@@ -192,7 +215,10 @@ namespace MvcFeeManage.Areas.Auth.Controllers
             int roll = tblstudentdata.rollno;
             ViewBag.CourseId = new SelectList(db.Courses, "CourseId", "CourseName");
             img = tblstudentdata.image;
-            tblstudentdata.password = help.EncryptData(tblstudentdata.password);
+            if (tblstudentdata.password != null)
+            {
+                tblstudentdata.password = help.DecryptData(tblstudentdata.password);
+            }
             #region delete file
             string fullPath = Request.MapPath("~/UploadedFiles/" + img);
             if (img == tblstudentdata.image)
