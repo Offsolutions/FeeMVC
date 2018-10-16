@@ -405,7 +405,7 @@ namespace MvcFeeManage.Areas.Auth.Models
         [Display(Name = "Date")]
         public Nullable<System.DateTime> Date { get; set; }
         [Display(Name = "Recipt No")]
-        public int ReciptNo { get; set; }
+        public string ReciptNo { get; set; }
         [Display(Name = "Course Name")]
         public string CourseName { get; set; }
     }

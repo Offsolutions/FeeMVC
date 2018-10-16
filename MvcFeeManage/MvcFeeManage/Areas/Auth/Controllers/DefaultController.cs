@@ -88,7 +88,9 @@ namespace MvcFeeManage.Areas.Auth.Controllers
                     RollNo=item.RollNo,
                     Amount=item.Amount,
                     CourseName=item.CourseName,
-                    Date=item.Date
+                    Date=item.Date,
+                    ReciptNo=item.ReciptNo
+
 
 
                 });
