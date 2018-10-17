@@ -90,31 +90,8 @@ namespace MvcFeeManage.Areas.Auth.Controllers
                     CourseName=item.CourseName,
                     Date=item.Date,
                     ReciptNo=item.ReciptNo
-
-
-
                 });
             }
-           
-            //marksModel.Add("Id","");
-            //marksModel.Add("RollNo");
-            //marksModel.Add("Amount");
-            //marksModel.Add("Date");
-            //marksModel.Add("ReciptNo");
-            //marksModel.Add("CourseName");
-            //marksModel.Add("name");
-            //marksModel = receiptdetail.ToList();
-            //foreach (var receipts in receiptdetail)
-            //{
-            //    marksModel.A
-            //    marksModel.Add("RollNo", receipts.RollNo);
-            //    marksModel.Add("Amount", receipts.Amount);
-            //    marksModel.Add("Date", receipts.Date);
-            //    marksModel.Add("ReciptNo", receipts.ReciptNo);
-            //    marksModel.Add("CourseName", receipts.CourseName);
-            //    marksModel.Add("name", receipts.name);
-            //}
-            
             return View(sturecord);
           
         }
