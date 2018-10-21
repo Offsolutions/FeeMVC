@@ -237,7 +237,6 @@ namespace MvcFeeManage.Areas.Auth.Models
         [Display(Name = "Status")]
         public bool status { get; set; }
     }
-
     public class tblinquiry
     {
         [Key]
@@ -392,5 +391,22 @@ namespace MvcFeeManage.Areas.Auth.Models
         public string address { get; set; }
         [Display(Name = "Logo")]
         public string logo { get; set; }
-    }   
+    }
+    public class Stu_rec
+    {
+        [Key]
+        public int id { get; set; }
+        [Display(Name = "Name")]
+        public string name { get; set; }
+        [Display(Name = "RollNo")]
+        public int RollNo { get; set; }
+        [Display(Name = "Amount")]
+        public int Amount { get; set; }
+        [Display(Name = "Date")]
+        public Nullable<System.DateTime> Date { get; set; }
+        [Display(Name = "Recipt No")]
+        public string ReciptNo { get; set; }
+        [Display(Name = "Course Name")]
+        public string CourseName { get; set; }
+    }
 }
