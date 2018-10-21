@@ -60,7 +60,7 @@
             </tr>
         </thead>
         @foreach (var item in feemaster)
-            {
+        {
             <tr>
                 <td>
                     @Html.DisplayFor(modelItem => item.RollNo)
@@ -78,7 +78,17 @@
                     @Html.DisplayFor(modelItem => item.phone)
                 </td>
                 <td>
-                    @Html.DisplayFor(modelItem => item.TotalFees)
+                    @*@Html.DisplayFor(modelItem => item.TotalFees)*@
+                    @{ 
+                        StudentCourse cc = db.StudentCourses.Where(x => x.RollNo == item.RollNo).FirstOrDefault();
+                        DateTime Date1 =Convert.ToDateTime(cc.Admitdate);
+                        DateTime Date2 = Convert.ToDateTime(cc.enddate);
+
+                        int a = ((Date1.Year - Date2.Year) * 12) + Date1.Month - Date2.Month;
+                        int b = (Convert.ToInt32(item.TotalFees) * Convert.ToInt32(a) * Convert.ToInt32(-1));
+                    }
+                   @b
+                   
                 </td>
                 <td>
                     @Html.DisplayFor(modelItem => item.PaidFees)
@@ -87,7 +97,7 @@
                     @Html.DisplayFor(modelItem => item.discount)
                 </td>
                 <td>
-                    @{ int pending = item.TotalFees - (item.PaidFees + item.discount);
+                    @{ int pending = b - (item.PaidFees + item.discount);
                     }
                     @pending
                 </td>
