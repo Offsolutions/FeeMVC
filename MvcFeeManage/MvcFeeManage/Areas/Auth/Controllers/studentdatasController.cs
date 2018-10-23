@@ -185,6 +185,7 @@ namespace MvcFeeManage.Areas.Auth.Controllers
         }
 
         // GET: Auth/studentdatas/Delete/5
+        [Authorize(Roles ="Admin")]
         public ActionResult Delete(int? id)
         {
             Helper help = new Helper();

@@ -25,7 +25,31 @@ namespace MvcFeeManage.Areas.Auth.Controllers
             var ab = System.DateTime.Now.AddDays(-3);
             var c = Convert.ToDateTime(ab);
             var studentcourse = db.StudentCourses.Where(x => x.Status == true && x.enddate <= c && x.Status == true).ToList();
-            return View(db.StudentCourses.Where(x => x.Status == true && x.enddate <= c));
+            List<StudentCourse> sturecord = new List<StudentCourse>();
+            var receiptdetail = from tblstudentdata in db.tblstudentdata
+                                join StudentCourse in db.StudentCourses on tblstudentdata.rollno equals StudentCourse.RollNo
+                                where tblstudentdata.Status == true && StudentCourse.RollNo == tblstudentdata.rollno && StudentCourse.enddate<=c
+                                select new
+                                {
+                                    ID = StudentCourse.Id,
+                                    Roll= StudentCourse.RollNo,
+                                    Enddate=StudentCourse.enddate,
+                                    Course=StudentCourse.CourseId
+                                    
+
+                                };
+            foreach (var item in receiptdetail)
+            {
+                sturecord.Add(new StudentCourse()
+                {
+                    Id = item.ID,
+                    RollNo = item.Roll,
+                    enddate = item.Enddate,
+                    CourseId = item.Course,
+                   
+                });
+            }
+            return View(sturecord);
         }
         public ActionResult FeeAlert()
         {

@@ -17,6 +17,7 @@ namespace MvcFeeManage.Areas.Auth.Controllers
         private dbcontext db = new dbcontext();
         public static string img;
         // GET: Auth/Account
+        [Authorize(Roles ="Admin")]
         public ActionResult Index()
         {
             return View(db.tblreceptionists.ToList());

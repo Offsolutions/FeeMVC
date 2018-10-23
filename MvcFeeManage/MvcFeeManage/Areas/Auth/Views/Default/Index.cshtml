@@ -4,26 +4,38 @@
     Layout = "~/Areas/Auth/Views/Shared/Layout.cshtml";
 }
 
-<h2>Index</h2>
+<h2>DashBoard</h2>
 
 <div class="row" style="margin:66px 20px 40px 20px;padding:10px;">
-    <div class="col-md-2 col-sm-12 col-xs-12">
-        <div class="board">
-
-            <div class="number">
-                <a href="@Url.Action("CourseFinishAlert", "Default")">
-                    @*<img src="~/Areas/assets/login/images/news-icon-12.png" style="width:90px;" />*@
-
-                    <h4>Course Finish Alert</h4>
-                </a>
+    <div class="col-md-3 col-xl-3">
+        <a href="@Url.Action("CourseFinishAlert", "Default")">
+            <div class="widget widget-tile">
+                <div class="chart sparkline" id="spark1">
+                    <div class="icon"><span class="mdi mdi-file-text"></span></div>
+                </div>
+                <div class="data-info">
+                    <div class="desc">Course Alert</div>
+                    <div class="value">
+                        <span class="indicator indicator-equal mdi mdi-chevron-right"></span><span class="number" data-toggle="counter" data-end="113"></span>
+                    </div>
+                </div>
             </div>
-            <div class="number">
-                <a href="@Url.Action("FeeAlert", "Default")">
-                    @*<img src="~/Areas/assets/login/images/news-icon-12.png" style="width:90px;" />*@
-
-                    <h4>Fee Alert</h4>
-                </a>
-            </div>
-        </div>
+        </a>
     </div>
+    <div class="col-md-3 col-xl-3">
+        <a href="@Url.Action("FeeAlert", "Default")">
+            <div class="widget widget-tile">
+                <div class="chart sparkline" id="spark1">
+                    <div class="icon"><span class="mdi mdi-file-text"></span></div>
+                </div>
+                <div class="data-info">
+                    <div class="desc">Report</div>
+                    <div class="value">
+                        <span class="indicator indicator-equal mdi mdi-chevron-right"></span><span class="number" data-toggle="counter" data-end="113"></span>
+                    </div>
+                </div>
+            </div>
+        </a>
+    </div>
+    
 </div>
